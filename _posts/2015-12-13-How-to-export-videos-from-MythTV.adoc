@@ -19,8 +19,15 @@ sde      8:64   0   1.8T  0 disk
 
 
  > sudo fdisk -l /dev/sde  
-Disk /dev/sde: 2000.4 GB, 2000398934016 bytes255 heads, 63 sectors/track, 243201 cylinders, total 3907029168 sectorsUnits = sectors of 1 * 512 = 512 bytesSector size (logical/physical): 512 bytes / 512 bytesI/O size (minimum/optimal): 512 bytes / 512 bytesDisk identifier: 0xb7152577  
-   Device Boot      Start         End      Blocks   Id  System  
+Disk /dev/sde: 2000.4 GB, 2000398934016 bytes
+255 heads, 63 sectors/track, 243201 cylinders, total 3907029168 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0xb7152577  
+   
+Device    Boot     Start   End         Blocks        Id System  
+
 /dev/sde1          206848  3907024064  1953408608+   7  HPFS/NTFS/exFAT  
 
  > sudo mount -t ntfs /dev/sde1 /mnt/tmp
