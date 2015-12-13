@@ -23,7 +23,7 @@ Disk /dev/sde: 2000.4 GB, 2000398934016 bytes255 heads, 63 sectors/track, 243201
    Device Boot      Start         End      Blocks   Id  System  
 /dev/sde1          206848  3907024064  1953408608+   7  HPFS/NTFS/exFAT  
 
- > sudo mount -t ntfs /dev/sde1 /mnt/tmp  
+ > sudo mount -t ntfs /dev/sde1 /mnt/tmp
  
 **Download the Mythlink script so you can export videos out of MythTV and rename the files**
 
@@ -31,13 +31,13 @@ Disk /dev/sde: 2000.4 GB, 2000398934016 bytes255 heads, 63 sectors/track, 243201
 
 *   This will create a directory of symbolic links (regroup/title.mpg) to the actual file.mpg
 
- > perl Mythlink.pl --format %U/%T --destination ~/videos  
+ > perl Mythlink.pl --format %U/%T --destination ~/videos
 
 **Copy the files to your usb drive**
 
 *   copy the files to the location and dereference symlinks                   
  
- > cp -rvL ~/videos /mnt/tmp/  
+ > cp -rvL ~/videos /mnt/tmp/
 
 *   copy only files that haven't been copied yet and dereference symlinks                   
 
