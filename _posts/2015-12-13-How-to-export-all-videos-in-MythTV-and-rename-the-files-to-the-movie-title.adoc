@@ -1,6 +1,6 @@
 = How to export all videos in MythTV and rename the files to the movie title
 
-=== **To begin, mount a usb drive**
+**To begin, mount a usb drive**
 
  > lsblk  
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT  
