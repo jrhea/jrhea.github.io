@@ -35,7 +35,7 @@
     <meta property="og:description" content="To begin, mount a usb drive  &amp;gt; lsblk NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT sda      8:0    0 119.2G  0 disk ├─sda1   8:1    0 115.2G  0 part / ├─sda2   8:2    0     1K  0 part └─sda5..." />
     <meta property="og:url" content="https://jrhea.github.io/2015/12/13/How-to-export-all-videos-in-MythTV-and-rename-the-files-to-the-movie-title.html" />
     <meta property="article:published_time" content="2015-12-13T06:00:00.000Z" />
-    <meta property="article:modified_time" content="2015-12-13T23:03:49.013Z" />
+    <meta property="article:modified_time" content="2015-12-13T23:06:43.316Z" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="How to export all videos in MythTV and rename the files to the movie title" />
@@ -57,7 +57,7 @@
     "headline": "How to export all videos in MythTV and rename the files to the movie title",
     "url": "https://jrhea.github.io/2015/12/13/How-to-export-all-videos-in-MythTV-and-rename-the-files-to-the-movie-title.html",
     "datePublished": "2015-12-13T06:00:00.000Z",
-    "dateModified": "2015-12-13T23:03:49.013Z",
+    "dateModified": "2015-12-13T23:06:43.316Z",
     "description": "To begin, mount a usb drive  &amp;gt; lsblk NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT sda      8:0    0 119.2G  0 disk ├─sda1   8:1    0 115.2G  0 part / ├─sda2   8:2    0     1K  0 part └─sda5..."
 }
     </script>
@@ -202,14 +202,23 @@ Disk /dev/sde: 2000.4 GB, 2000398934016 bytes255 heads, 63 sectors/track, 243201
 <p>Grab <a href="https://www.mythtv.org/wiki/Mythlink.pl">Mythlink.pl</a> script from MythTV wiki.</p>
 </li>
 <li>
-<p>This will create a directory of symbolic links (regroup/title.mpg) to the actual file.mpg                   &gt;perl Mythlink.pl --format %U/%T --destination ~/videos
-<strong>Copy the files to your usb drive</strong></p>
+<p>This will create a directory of symbolic links (regroup/title.mpg) to the actual file.mpg
+&gt; perl Mythlink.pl --format %U/%T --destination ~/videos</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Copy the files to your usb drive</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>copy the files to the location and dereference symlinks
+&gt; cp -rvL ~/videos /mnt/tmp/</p>
 </li>
 <li>
-<p>copy the files to the location and dereference symlinks                   &gt; cp -rvL ~/videos /mnt/tmp/</p>
-</li>
-<li>
-<p>copy only files that haven&#8217;t been copied yet and dereference symlinks                   &gt; cp -ruvL ~/videos /mnt/tmp/</p>
+<p>copy only files that haven&#8217;t been copied yet and dereference symlinks
+&gt; cp -ruvL ~/videos /mnt/tmp/</p>
 </li>
 </ul>
 </div>
