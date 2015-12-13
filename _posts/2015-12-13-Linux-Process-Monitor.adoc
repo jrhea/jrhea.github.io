@@ -1,6 +1,6 @@
 = Linux Process Monitor
 
-Use the **watch** command to monitor process **bar** every .1 secs
+Use the watch command to monitor process **bar** every .1 secs
 
 [source,bash]
 ----
