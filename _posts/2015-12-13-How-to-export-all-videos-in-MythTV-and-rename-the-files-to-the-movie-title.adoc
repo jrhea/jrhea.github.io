@@ -1,0 +1,37 @@
+= How to export all videos in MythTV and rename the files to the movie title
+
+=== **To begin, mount a usb drive**
+
+ > lsblk  
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT  
+sda      8:0    0 119.2G  0 disk   
+├─sda1   8:1    0 115.2G  0 part /  
+├─sda2   8:2    0     1K  0 part   
+└─sda5   8:5    0     4G  0 part [SWAP]  
+sdb      8:16   0   2.7T  0 disk   
+└─sdb1   8:17   0     2T  0 part /mnt/mythtv-data-backup  
+sdc      8:32   0   2.7T  0 disk   
+└─sdc1   8:33   0     2T  0 part /mnt/mythtv-data1  
+sdd      8:48   0 931.5G  0 disk   
+└─sdd1   8:49   0 931.5G  0 part /mnt/tmp  
+sde      8:64   0   1.8T  0 disk   
+└─sde1   8:65   0   1.8T  0 part   
+
+
+ > sudo fdisk -l /dev/sde  
+Disk /dev/sde: 2000.4 GB, 2000398934016 bytes255 heads, 63 sectors/track, 243201 cylinders, total 3907029168 sectorsUnits = sectors of 1 * 512 = 512 bytesSector size (logical/physical): 512 bytes / 512 bytesI/O size (minimum/optimal): 512 bytes / 512 bytesDisk identifier: 0xb7152577  
+   Device Boot      Start         End      Blocks   Id  System  
+/dev/sde1          206848  3907024064  1953408608+   7  HPFS/NTFS/exFAT  
+
+ > sudo mount -t ntfs /dev/sde1 /mnt/tmp  
+ 
+**Download the Mythlink script so you can export videos out of MythTV and rename the files**
+
+*   Grab https://www.mythtv.org/wiki/Mythlink.pl[Mythlink.pl] script from MythTV wiki.
+
+*   This will create a directory of symbolic links (regroup/title.mpg) to the actual file.mpg                   >perl Mythlink.pl --format %U/%T --destination ~/videos  
+**Copy the files to your usb drive**
+
+*   copy the files to the location and dereference symlinks                   > cp -rvL ~/videos /mnt/tmp/  
+
+*   copy only files that haven't been copied yet and dereference symlinks                   > cp -ruvL ~/videos /mnt/tmp/
