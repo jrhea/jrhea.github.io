@@ -29,9 +29,13 @@ Disk /dev/sde: 2000.4 GB, 2000398934016 bytes255 heads, 63 sectors/track, 243201
 
 *   Grab https://www.mythtv.org/wiki/Mythlink.pl[Mythlink.pl] script from MythTV wiki.
 
-*   This will create a directory of symbolic links (regroup/title.mpg) to the actual file.mpg                   >perl Mythlink.pl --format %U/%T --destination ~/videos  
+*   This will create a directory of symbolic links (regroup/title.mpg) to the actual file.mpg                   
+ > perl Mythlink.pl --format %U/%T --destination ~/videos  
+
 **Copy the files to your usb drive**
 
-*   copy the files to the location and dereference symlinks                   > cp -rvL ~/videos /mnt/tmp/  
+*   copy the files to the location and dereference symlinks                   
+ > cp -rvL ~/videos /mnt/tmp/  
 
-*   copy only files that haven't been copied yet and dereference symlinks                   > cp -ruvL ~/videos /mnt/tmp/
+*   copy only files that haven't been copied yet and dereference symlinks                   
+ > cp -ruvL ~/videos /mnt/tmp/
