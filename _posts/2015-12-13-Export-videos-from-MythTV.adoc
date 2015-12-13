@@ -1,4 +1,4 @@
-= How to export videos from MythTV
+= Export videos from MythTV
 
 **To begin, mount a usb drive**
 
