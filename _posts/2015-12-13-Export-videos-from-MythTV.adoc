@@ -25,9 +25,7 @@ Units = sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 Disk identifier: 0xb7152577  
-   
 Device    Boot     Start   End         Blocks        Id System  
-
 /dev/sde1          206848  3907024064  1953408608+   7  HPFS/NTFS/exFAT  
 
  > sudo mount -t ntfs /dev/sde1 /mnt/tmp
