@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Notes - jonny rhea</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Notes">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Notes">
+    <meta property="og:description" content="">
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="//jrhea.github.io/themes/uno/assets/css/uno.css?v=1.0.0" />
+
+    <link rel="canonical" href="https://jrhea.github.io/2015/12/05/Notes.html" />
+    
+    <meta property="og:site_name" content="jonny rhea" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Notes" />
+    <meta property="og:description" content="1. general commands 1.1. find Search the current dir (and below) for a file named sue: $ find . –name sue Search /tmp and /var for files named foo*bar modified in the last week: $ find /tmp /var –mtime -7 -name..." />
+    <meta property="og:url" content="https://jrhea.github.io/2015/12/05/Notes.html" />
+    <meta property="article:published_time" content="2015-12-05T06:00:00.000Z" />
+    <meta property="article:modified_time" content="2015-12-14T06:15:59.905Z" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Notes" />
+    <meta name="twitter:description" content="1. general commands 1.1. find Search the current dir (and below) for a file named sue: $ find . –name sue Search /tmp and /var for files named foo*bar modified in the last week: $ find /tmp /var –mtime -7 -name..." />
+    <meta name="twitter:url" content="https://jrhea.github.io/2015/12/05/Notes.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "jonny rhea",
+    "author": {
+        "@type": "Person",
+        "name": "Jonny Rhea",
+        "image": "https://avatars.githubusercontent.com/u/5555162?v=3",
+        "url": "undefined/author/undefined",
+        "sameAs": null
+    },
+    "headline": "Notes",
+    "url": "https://jrhea.github.io/2015/12/05/Notes.html",
+    "datePublished": "2015-12-05T06:00:00.000Z",
+    "dateModified": "2015-12-14T06:15:59.905Z",
+    "description": "1. general commands 1.1. find Search the current dir (and below) for a file named sue: $ find . –name sue Search /tmp and /var for files named foo*bar modified in the last week: $ find /tmp /var –mtime -7 -name..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost ?" />
+    <link rel="alternate" type="application/rss+xml" title="jonny rhea" href="https://jrhea.github.io/rss" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+
+</head>
+<body class="post-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed " style="background-image: url(https://jrhea.github.io/images/whoru.png)">
+      <div class="panel-main">
+    
+        <div class="panel-main__inner panel-inverted">
+        <div class="panel-main__content">
+    
+            <a href="https://jrhea.github.io" title="link to homepage for jonny rhea"><img src="https://jrhea.github.io/images/cube_solve.gif" width="80" alt="jonny rhea logo" class="panel-cover__logo logo" /></a>
+            <h1 class="panel-cover__title panel-title"><a href="https://jrhea.github.io" title="link to homepage for jonny rhea">jonny rhea</a></h1>
+            <hr class="panel-cover__divider" />
+            <p class="panel-cover__description">Right. Well, I mean when it came to stuff like [this]... I could always just play.</p>
+            <hr class="panel-cover__divider panel-cover__divider--secondary" />
+    
+            <div class="navigation-wrapper">
+    
+              <nav class="cover-navigation cover-navigation--primary">
+                <ul class="navigation">
+                  <li class="navigation__item"><a href="https://jrhea.github.io/#blog" title="link to jonny rhea blog" class="blog-button">Blog</a></li>
+                </ul>
+              </nav>
+    
+              
+              
+              <nav class="cover-navigation navigation--social">
+                <ul class="navigation">
+              
+              
+              
+              
+                  <!-- Github -->
+                  <li class="navigation__item">
+                    <a href="https://github.com/jrhea" title="Github account">
+                      <i class='icon icon-social-github'></i>
+                      <span class="label">Github</span>
+                    </a>
+                  </li>
+                  </li>
+              
+              
+              
+              
+                  <!-- LinkedIn -->
+                  <li class="navigation__item">
+                    <a href="https://www.linkedin.com/in/jrhea" title="LinkedIn account">
+                      <i class='icon icon-social-linkedin'></i>
+                      <span class="label">LinkedIn</span>
+                    </a>
+                  </li>
+              
+                  <!-- Email -->
+                  <li class="navigation__item">
+                    <a href="mailto:jonathan.rhea@gmail.com" title="Email jonathan.rhea@gmail.com">
+                      <i class='icon icon-mail'></i>
+                      <span class="label">Email</span>
+                    </a>
+                  </li>
+              
+                </ul>
+              </nav>
+              
+    
+            </div>
+    
+          </div>
+    
+        </div>
+    
+        <div class="panel-cover--overlay"></div>
+      </div>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="05 Dec 2015" class="post-meta__date date">05 Dec 2015</time> &#8226; <span class="post-meta__tags tags"></span>
+        <span class="post-meta__author author"><img src="https://avatars.githubusercontent.com/u/5555162?v=3" alt="profile image for Jonny Rhea" class="avatar post-meta__avatar" /> by Jonny Rhea</span>
+      </div>
+      <h1 class="post-title">Notes</h1>
+    </header>
+
+    <section class="post">
+      <div class="sect1">
+<h2 id="_general_commands">1. general commands</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_find">1.1. find</h3>
+<div class="paragraph">
+<p>Search the current dir (and below) for a file named sue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ find . –name sue</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Search /tmp and /var for files named foo*bar modified in the last week:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ find /tmp /var –mtime -7 -name foo\*bar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Search the file system for files modified &lt; 10 mins ago, excluding dirs and other special files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ find / -mmin -10 –type f</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linux_system_info">2. linux system info</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>report file system disk space usage (human readable):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ df -h</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>processor info:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ more /proc/cpuinfo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>memory info:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ more /proc/meminfo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>check to see if Linux is 32 or 64bit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ getconf LONG_BIT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>distribution info:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ lsb_release</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>list all packages installed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ dpkg -l</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>find the 25 largest dirs starting at the current dir:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ du –xk |sort –n |tail -25</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>show what processes are using which ports:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ netstat -tulpn</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linux_system_configuration">3. linux system configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>check and repair filesystem:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ fsck /dev/sda1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>change the frequency of filesys checks on startup:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ tune2fs –c &lt;some number&gt; /dev/sda1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to change the login manager edit:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>/etc/X11/default-display-manager</strong></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>if your mac address changes edit or delete:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>/etc/udev/rules.d/70-persistent-net.rules</strong></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>disable filesys checks by changing the last number in line to 0:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>/etc/fstab</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;     &lt;dump&gt; &lt;pass&gt;+
+# performs filesys check every 30 startups
+/dev/sda1        /mnt/foo        ext4   defaults 0 30
+# filesys checks disabled
+/dev/sdb1        /mnt/bar        ext4   defaults 0 0</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To grant passwordless rsh:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>hosts.equiv</strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;computer name&gt; &lt;user name&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Create ssh key (rsa):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ cd ~/.ssh
+$ ssh-keygen –t rsa
+$ ssh-add &lt;file&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linux_binutils">4. linux binutils</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_objdump">4.1. objdump</h3>
+<div class="paragraph">
+<p><strong>display info from an object file(s).</strong></p>
+</div>
+<div class="paragraph">
+<p>basic syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ objdump &lt;options&gt; file</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>display the contents of the overall file header:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ objdump –f foo
+
+foo:     file format elf32-i386
+architecture: i386, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x0804be34</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>display object format specific file header contents:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ objdump -p foo
+
+foo:     file format elf32-i386
+
+Program Header:
+    PHDR off    0x00000034 vaddr 0x08048034 paddr 0x08048034 align 2**2
+         filesz 0x00000120 memsz 0x00000120 flags r-x
+  INTERP off    0x00000154 vaddr 0x08048154 paddr 0x08048154 align 2**0
+         filesz 0x00000013 memsz 0x00000013 flags r--
+(...)
+Dynamic Section:
+  NEEDED               libc.so.6
+  INIT                 0x080494a0
+  FINI                 0x0805a02c
+  GNU_HASH             0x080481ac
+  STRTAB               0x080489b8
+(...)
+Version References:
+  required from libc.so.6:
+    0x09691f73 0x00 10 GLIBC_2.1.3
+    0x0d696912 0x00 09 GLIBC_2.2
+    0x09691a73 0x00 07 GLIBC_2.2.3
+(...)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nm">4.2. nm</h3>
+<div class="paragraph">
+<p><strong>provides info on the symbols used in an object file or executable. by default, nm shows the symbol: value, type and name.</strong></p>
+</div>
+<div class="paragraph">
+<p>basic syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ nm</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>if no file is provided, nm will inspect a.out</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>display default information on executable (or object file):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ nm foo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>display all the symbols in an executable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ nm -n foo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>display information about the size of a particular symbol, bar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ nm -n foo -S | grep bar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>only display information on external symbols:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ nm -g foo</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_utils">5. other utils</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_file">5.1. file</h3>
+<div class="paragraph">
+<p><strong>get basic file information on a file(s).</strong></p>
+</div>
+<div class="paragraph">
+<p>basic syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ file file</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ file foo
+
+foo: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, stripped</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </section>
+
+  </article>
+
+
+
+
+            <footer class="footer">
+                <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+                <span class="footer__copyright"><a href="http://uno.daleanthony.com" title="link to page for Uno Ghost theme">Uno theme</a> by <a href="http://daleanthony.com" title="link to website for Dale-Anthony">Dale-Anthony</a></span>
+                <span class="footer__copyright">Proudly published with <a href="http://hubpress.io" title="link to Hubpress website">Hubpress</a></span>
+            </footer>
+        </div>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();      
+      </script>
+
+    <script type="text/javascript" src="//jrhea.github.io/themes/uno/assets/js/main.js?v=1.0.0"></script>
+    
+
+</body>
+</html>
