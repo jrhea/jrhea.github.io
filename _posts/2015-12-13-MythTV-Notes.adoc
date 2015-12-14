@@ -1,4 +1,4 @@
-= Export videos from MythTV
+= MythTV Notes
 
 **To begin, mount a usb drive**
 
