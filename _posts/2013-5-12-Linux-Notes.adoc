@@ -9,6 +9,13 @@
 
 *my linux notes*
 
+
+
+
+
+
+
+
 [index]
 == general commands
 === find
