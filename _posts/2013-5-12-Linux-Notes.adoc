@@ -1,10 +1,10 @@
-= Notes
+= Linux Notes
 :author: jonny rhea
 :doctype: notes
 :encoding: utf-8
 :lang: en
 :toc: left
-:date: 5/12/2013
+:published_at: 2013-5-12
 :numbered:
 
 [index]
@@ -22,50 +22,123 @@ Search the file system for files modified < 10 mins ago, excluding dirs and othe
 [source,bash]
 $ find / -mmin -10 –type f
 
+=== watch
+Use the watch command to monitor a process every .1 secs
+
+[source,bash]
+----
+watch -e -n .1 'if ps cax | grep -w 'foo'; then exit 0; else exit 1; fi'
+----
+
 [index]
 == linux system info
 
 report file system disk space usage (human readable):
-[source,bash]
+----
 $ df -h
+----
 
 processor info:
-[source,bash]
+----
 $ more /proc/cpuinfo
+----
 
 memory info:
-[source,bash]
+----
 $ more /proc/meminfo
+----
 
 check to see if Linux is 32 or 64bit:
-[source,bash]
+----
 $ getconf LONG_BIT
+----
 
 distribution info:
-[source,bash]
+----
 $ lsb_release
+----
 
 list all packages installed:
-[source,bash]
+----
 $ dpkg -l
+----
 
 find the 25 largest dirs starting at the current dir:
-[source,bash]
+----
 $ du –xk |sort –n |tail -25
+----
 
 show what processes are using which ports:
-[source,bash]
+----
 $ netstat -tulpn
+----
+
+[index]
+== linux ipc
+=== ipcs
+*provides information on system inter process communication.*
+
+----
+$ ipcs
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status     
+0x6112703c 32769        me         666        15600      2  
+
+------ Semaphore Arrays --------
+key        semid      owner      perms      nsems     
+
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages    
+
+----
+
+[TIP]
+====
+use the following options to filter the information displayed:
+
+* m => shared memory
+* q => message queues
+* s => semaphores
+====
+
+to find out what process is attached to shared memory use the -p option:
+
+----
+$ ipcs -mp
+------ Shared Memory Creator/Last-op --------
+shmid      owner      cpid       lpid     
+32769      me         3265       3290       
+
+$ ps -ef | grep 3290
+ 3290  3289  1 17:28 ?        00:00:12 /usr/local/java/bin/java -jar ~/foo/foo.jar bar 
+ 11587 3290  3 17:41 ?        00:00:00 ~/foo/bar
+----
+
+=== ipcrm
+*use this command to remove shared memory, message queue, or semaphore.*
+
+remove shared memory by id
+---
+$ ipcs -m <shmid>
+---
+
+remove shared memory by key
+---
+$ ipcs -M <key>
+---
 
 [index]
 == linux system configuration
 check and repair filesystem:
-[source,bash]
+----
 $ fsck /dev/sda1
+----
 
 change the frequency of filesys checks on startup:
-[source,bash]
+----
 $ tune2fs –c <some number> /dev/sda1
+----
 
 to change the login manager edit:
 ****
@@ -81,7 +154,7 @@ disable filesys checks by changing the last number in line to 0:
 ****
 */etc/fstab*
 ----
-# <file system> <mount point>   <type>  <options>     <dump> <pass>+
+# <file system> <mount point>   <type>  <options>     <dump> <pass>
 # performs filesys check every 30 startups
 /dev/sda1        /mnt/foo        ext4   defaults 0 30   
 # filesys checks disabled
@@ -108,11 +181,11 @@ $ ssh-add <file>
 *display info from an object file(s).*
 
 basic syntax:
-[source,bash]
+----
 $ objdump <options> file
+----
 
 display the contents of the overall file header:
-[source,bash]
 ----
 $ objdump –f foo
 
@@ -123,7 +196,6 @@ start address 0x0804be34
 ----
 
 display object format specific file header contents:
-[source,bash]
 ----
 $ objdump -p foo
 
@@ -154,8 +226,9 @@ Version References:
 *provides info on the symbols used in an object file or executable. by default, nm shows the symbol: value, type and name.*
 
 basic syntax:
-[source,bash]
+----
 $ nm 
+----
 
 [NOTE]
 ====
@@ -163,20 +236,24 @@ if no file is provided, nm will inspect a.out
 ====
 
 display default information on executable (or object file):
-[source,bash]
+----
 $ nm foo
+----
 
 display all the symbols in an executable:
-[source,bash]
+----
 $ nm -n foo
+----
 
 display information about the size of a particular symbol, bar:
-[source,bash]
+----
 $ nm -n foo -S | grep bar
+----
 
 only display information on external symbols:
-[source,bash]
+----
 $ nm -g foo
+----
 
 [index]
 == other utils
@@ -184,11 +261,11 @@ $ nm -g foo
 *get basic file information on a file(s).*
 
 basic syntax:
-[source, bash]
+----
 $ file file
+----
 
 example:
-[source,bash]
 ----
 $ file foo
 
