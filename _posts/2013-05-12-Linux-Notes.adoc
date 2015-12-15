@@ -12,21 +12,23 @@
 == general commands
 === find
 Search the current dir (and below) for a file named sue:
-[source,bash]
+----
 $ find . –name sue
+----
 
 Search /tmp and /var for files named foo*bar modified in the last week:  
-[source,bash]
+----
 $ find /tmp /var –mtime -7 -name foo\*bar
+----
 
 Search the file system for files modified < 10 mins ago, excluding dirs and other special files:
-[source,bash]
+----
 $ find / -mmin -10 –type f
+----
 
 === watch
 Use the watch command to monitor a process every .1 secs
 
-[source,bash]
 ----
 watch -e -n .1 'if ps cax | grep -w 'foo'; then exit 0; else exit 1; fi'
 ----
