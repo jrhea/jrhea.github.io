@@ -5,9 +5,7 @@
 :lang: en
 :toc: left
 :published_at: 2013-5-12
-:numbered:
-
-*my linux notes*
+:numbered
 
 [index]
 == general commands
