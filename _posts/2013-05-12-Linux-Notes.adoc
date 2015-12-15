@@ -1,4 +1,5 @@
 = Linux Notes
+:hp-image: penguin.png
 :author: jonny rhea
 :doctype: notes
 :encoding: utf-8
