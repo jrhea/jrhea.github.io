@@ -1,0 +1,37 @@
+= OSX Notes
+:author: jonny rhea
+:doctype: notes
+:encoding: utf-8
+:lang: en
+:toc: left
+:published_at: 2013-12-06
+:numbered:
+
+[index]
+== Create a bootable debian usb drive
+
+download a debian iso and then convert iso to dmg:
+----
+hdiutil convert -format UDRW -o debian.img debian-7.2.0-amd64-netinst.iso
+----
+
+list devices and find usb drive:
+----
+diskutil list
+----
+
+parition usb drive:
+----
+diskutil partitionDisk /dev/disk4 1 "Free Space" "unused" "100%"
+----
+
+copy dmg to usb drive:
+----
+sudo dd if=debian.img.dmg of=/dev/disk4 bs=1m
+----
+
+eject disk:
+----
+diskutil eject /dev/disk4
+----
+
