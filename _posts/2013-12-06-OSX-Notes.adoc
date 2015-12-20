@@ -49,12 +49,14 @@ change:
 ----
 #X11Forwarding no
 ----
+
 to:
+
 ----
 X11Forwarding yes
 ----
 
-~/.ssh/config:
+Create ~/.ssh/config:
 ----
 host *
 ForwardX11 yes
