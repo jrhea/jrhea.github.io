@@ -1,2 +1,58 @@
-= Foo
+= Cryptocurrency Notes
+:hp-image: penguin.png
+:author: jonny rhea
+:doctype: notes
+:encoding: utf-8
+:lang: en
+:toc: left
+:published_at: 2013-11-12
+:numbered:
 
+[index]
+== Mining
+=== Bitcoin
+
+TODO: import old notes
+
+=== Scrypt based currencies
+
+TODO: import old notes
+
+=== Ethereum
+
+Updated old alt coin mining rig from Xubuntu 12.10
+
+Update /etc/apt/sources.list to EOL sources list:
+----
+## EOL upgrade sources.list
+deb http://old-releases.ubuntu.com/ubuntu/ quantal main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ quantal-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ quantal-security main restricted universe multiverse
+----
+
+Installed aptitude:
+----
+sudo apt-get install aptitude
+----
+
+install update manager packages (might already be there):
+----
+sudo aptitude install update-manager-core update-manager
+----
+
+double check desktop package name (should be obvious considerin I am running Xubuntu:
+----
+dpkg -l | grep tu-desktop
+----
+
+installing xubuntu desktop:
+----
+sudo aptitude install xubuntu-desktop
+----
+
+now upgrade:
+----
+sudo apt-get update
+sudo apt-get dist-upgrade
+sudo do-release-upgrade
+----
