@@ -19,7 +19,7 @@ TODO: import old notes
 
 === Ethereum
 
-Updated old alt coin mining rig from Xubuntu 12.10
+Updated old alt coin mining rig from Xubuntu 12.10 to 13.10
 
 Update /etc/apt/sources.list to EOL sources list:
 ----
