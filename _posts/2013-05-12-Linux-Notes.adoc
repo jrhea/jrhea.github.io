@@ -287,7 +287,7 @@ find the device:
 ----
 sudo fdisk -l
 df -T
----
+----
 
 create partition:
 ----
@@ -312,7 +312,7 @@ sudo mount -t ext4 /dev/sdb1 /mnt/usb/
 run the copy script:
 ----
 sh mkbkup.sh   #make sure TODIR=/mnt/usb
----
+----
 
 change the uuid to that of the original disk:
 ----
