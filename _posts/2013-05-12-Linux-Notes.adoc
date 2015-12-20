@@ -274,3 +274,53 @@ $ file foo
 
 foo: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, stripped
 ----
+
+[index]
+== misc procedures
+=== Clone drive
+
+find the device:
+----
+sudo fdisk -l
+df -T
+---
+
+create partition:
+----
+sudo fdisk /dev/sdb     # choose 'n' to create new partition
+---- 
+
+create filesystem:
+----
+sudo mkfs.ext4 /dev/sdb1
+----
+
+create mount point:
+----
+sudo mkdir /mnt/usb
+----
+
+mount it:
+----
+sudo mount -t ext4 /dev/sdb1 /mnt/usb/
+----
+
+run the copy script:
+----
+sh mkbkup.sh
+----
+
+change the uuid to that of the original disk:
+----
+tune2fs /dev/sdb1 -U {uuid of original disk}
+----
+
+install grub:
+----
+grub-install --root-directory=/mnt /dev/sdb
+----
+
+plug device in the target machine and boot.  Once it boots:
+----
+sudo update-grub
+----
