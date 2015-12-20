@@ -35,3 +35,29 @@ eject disk:
 diskutil eject /dev/disk4
 ----
 
+[index]
+== X11 Forwarding
+
+We need an X.Org X Windowing System for OSX: 
+----
+wget -c https://xquartz-dl.macosforge.org/SL/XQuartz-2.7.8.dmg
+----
+
+/etc/sshd_config
+
+change:
+----
+#X11Forwarding no
+----
+to:
+----
+X11Forwarding yes
+----
+
+~/.ssh/config:
+----
+host *
+ForwardX11 yes
+ForwardX11Trusted yes
+XauthLocation /opt/X11/bin/xauth
+----
