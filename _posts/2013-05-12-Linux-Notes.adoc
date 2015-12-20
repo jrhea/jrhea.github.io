@@ -58,7 +58,7 @@ $ getconf LONG_BIT
 
 distribution info:
 ----
-$ lsb_release
+$ lsb_release -a
 ----
 
 list all packages installed:
