@@ -36,6 +36,19 @@ diskutil eject /dev/disk4
 ----
 
 [index]
+== SSH
+
+stop ssh server:
+----
+sudo launchctl stop com.openssh.sshd
+----
+
+start ssh server:
+----
+sudo launchctl start com.openssh.sshd
+----
+
+[index]
 == X11 Forwarding
 
 We need an X.Org X Windowing System for OSX: 
