@@ -278,9 +278,9 @@ foo: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linke
 [index]
 == misc procedures
 === Clone drive
-copy my mkbkup.sh script:
+copy mkbkup.sh from my github repo:
 ----
-wget -c https://github.com/jrhea/.jr_env/tree/master/utils/sys/mkbkup.sh
+wget -c https://github.com/jrhea/.jr_env/raw/master/utils/sys/mkbkup.sh
 ----
 
 find the device:
