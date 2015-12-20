@@ -9,11 +9,11 @@
 
 [index]
 == Mining
-=== Bitcoin
+=== SHA-256 (e.g. Bitcoin)
 
 TODO: import old notes
 
-=== Scrypt based currencies
+=== Scrypt
 
 TODO: import old notes
 
@@ -55,3 +55,7 @@ sudo apt-get update
 sudo apt-get dist-upgrade
 sudo do-release-upgrade
 ----
+
+[index]
+== Monitor
+//TODO: add monitor setup instructions
