@@ -7,14 +7,6 @@
 :published_at: 2013-11-12
 :numbered:
 
-= Cryptocurrency Notes
-:author: jonny rhea
-:doctype: notes
-:encoding: utf-8
-:lang: en
-:toc: left
-:published_at: 2013-11-12
-:numbered:
 
 [index]
 == Mining
