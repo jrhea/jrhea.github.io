@@ -7,17 +7,28 @@
 :published_at: 2013-11-12
 :numbered:
 
+= Cryptocurrency Notes
+:author: jonny rhea
+:doctype: notes
+:encoding: utf-8
+:lang: en
+:toc: left
+:published_at: 2013-11-12
+:numbered:
+
 [index]
 == Mining
-=== SHA-256 (e.g. Bitcoin)
+=== Bitcoin
 
 TODO: import old notes
 
-=== Scrypt
+=== Altcoins
 
 TODO: import old notes
 
 === Ethereum
+
+==== Update to Xubuntu 14.04
 
 Updated old alt coin mining rig from Xubuntu 12.10 to 13.10
 
@@ -56,6 +67,89 @@ sudo apt-get dist-upgrade
 sudo do-release-upgrade
 ----
 
+Then upgraded to 14.04 so I could use the Ethereum PPAs
+
+==== Build Geth
+
+Download the latest Go:
+----
+curl -O https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz
+----
+
+Unpack:
+----
+tar -C /usr/local -xzf go1.4.2.linux-amd64.tar.gz
+----
+
+Set GOPATH and PATH:
+
+For Go to work properly, you need to set the following two environment variables:
+
+Setup a go folder:
+----
+mkdir -p ~/go; echo "export GOPATH=$HOME/go" >> ~/.bashrc
+----
+
+Update your path:
+----
+echo "export PATH=$PATH:$HOME/go/bin:/usr/local/go/bin" >> ~/.bashrc
+----
+
+Read the environment variables into current session:
+----
+source ~/.bashrc
+----
+
+install required libs for get build:
+----
+sudo apt-get install -y build-essential libgmp3-dev
+----
+
+clone geth:
+----
+git clone https://github.com/ethereum/go-ethereum
+cd go-ethereum
+----
+enable OpenCL:
+----
+export GO_OPENCL=true
+export GPU_MAX_ALLOC_PERCENT=95
+----
+build geth:
+----
+make geth
+----
+
+Still had issues with gpu mining in geth and i had to uninstall old fglrx deb files:
+****
+sudo dpkg -P fglrx* +
+[line-through]#sudo dpkg -P fglrx-updates-core fglrx-updates fglrx-amdcccle-updates#
+****
+
+Verify it is uninstalled:
+----
+sudo dpkg -l fglrx*
+----
+
+Next install fglrx-updates package:
+----
+sudo apt-get install fglrx-updates
+----
+
+Downloaded
+http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/[AMDAPPSDK 3.0]
+
+Extract it to /opt/AMDAPPSDK-3.0 then:
+----
+ln -sf /opt/AMDAPPSDK-3.0 /opt/AMDAPP
+ln -s /opt/AMDAPP/include/CL /usr/include
+ln -sf /opt/AMDAPP/include/CL /usr/include
+sudo ln -sf /opt/AMDAPP/include/CL /usr/include
+sudo ln -sf /opt/AMDAPP/lib/x86_64/* /usr/lib/
+ldconfig
+sudo ldconfig
+sudo reboot
+----
 [index]
 == Monitor
 //TODO: add monitor setup instructions
