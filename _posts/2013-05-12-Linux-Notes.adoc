@@ -41,6 +41,11 @@ report file system disk space usage (human readable):
 $ df -h
 ----
 
+find the UUID of a device:
+----
+$ ls -al /dev/disk/by-uuid/
+----
+
 processor info:
 ----
 $ more /proc/cpuinfo
