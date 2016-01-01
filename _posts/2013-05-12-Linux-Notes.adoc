@@ -13,7 +13,7 @@
 
 This is just a few general commands that are useful to know.
 
-=== find
+==== find
 Search the current dir (and below) for a file named sue:
 ----
 $ find . –name sue
@@ -29,7 +29,7 @@ Search the file system for files modified < 10 mins ago, excluding dirs and othe
 $ find / -mmin -10 –type f
 ----
 
-=== watch
+==== watch
 Use the watch command to monitor a process every .1 secs
 
 ----
@@ -86,7 +86,7 @@ $ netstat -tulpn
 
 [index]
 == linux ipc
-=== ipcs
+==== ipcs
 *provides information on system inter process communication.*
 
 ----
@@ -126,7 +126,7 @@ $ ps -ef | grep 3290
  11587 3290  3 17:41 ?        00:00:00 ~/foo/bar
 ----
 
-=== ipcrm
+==== ipcrm
 *use this command to remove shared memory, message queue, or semaphore.*
 
 remove shared memory by id
@@ -188,7 +188,7 @@ $ ssh-add <file>
 ----
 [index]
 == linux binutils
-=== objdump
+==== objdump
 *display info from an object file(s).*
 
 basic syntax:
@@ -233,7 +233,7 @@ Version References:
 (...)
 ----
 
-=== nm
+==== nm
 *provides info on the symbols used in an object file or executable. by default, nm shows the symbol: value, type and name.*
 
 basic syntax:
@@ -268,7 +268,7 @@ $ nm -g foo
 
 [index]
 == other utils
-=== file
+==== file
 *get basic file information on a file(s).*
 
 basic syntax:
