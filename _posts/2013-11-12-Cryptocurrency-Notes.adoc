@@ -111,15 +111,7 @@ build geth:
 make geth
 ----
 
-Still had issues with gpu mining in geth and i had to uninstall old fglrx deb files:
-----
-sudo dpkg -P fglrx fglrx-amdcccle fglrx-core fglrx-updates-core fglrx-updates fglrx-amdcccle-updates
-----
-
-Verify it is uninstalled:
-----
-sudo dpkg -l fglrx*
-----
+==== ATI/AMD Config
 
 Next install fglrx-updates package:
 ----
@@ -145,6 +137,32 @@ Bust an aticonfig init to generate a new xorg.conf
 ----
 sudo aticonfig --initial -f --adapter=all
 ----
+
+==== FGLRX Issues
+Still had issues with gpu mining in geth and it turns out that I had remnants from a previous fglrx install that was causing issues:
+
+Figure out what is hangining around
+----
+sudo dpkg -l fglrx*
+----
+
+Purge the old 
+----
+sudo dpkg -P fglrx fglrx-amdcccle fglrx-core fglrx-updates-core fglrx-updates fglrx-amdcccle-updates
+----
+
+Verify it is uninstalled:
+----
+sudo dpkg -l fglrx*
+----
+
+Next install fglrx-updates package:
+----
+sudo apt-get install fglrx-updates
+----
+
+
+==== AMD/ATI Issues
 
 I noticed that I couldn’t do:
 ----
