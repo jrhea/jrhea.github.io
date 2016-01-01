@@ -35,7 +35,7 @@
     <meta property="og:description" content="1. Mining 1.1. Bitcoin TODO: import old notes 1.2. Altcoins TODO: import old notes 1.3. Ethereum 1.3.1. Update to Xubuntu 14.04 Updated old alt coin mining rig from Xubuntu 12.10 to 13.10..." />
     <meta property="og:url" content="https://jrhea.github.io/2013/11/12/Cryptocurrency-Notes.html" />
     <meta property="article:published_time" content="2013-11-12T06:00:00.000Z" />
-    <meta property="article:modified_time" content="2016-01-01T08:54:59.256Z" />
+    <meta property="article:modified_time" content="2016-01-01T09:02:37.469Z" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Cryptocurrency Notes" />
@@ -57,7 +57,7 @@
     "headline": "Cryptocurrency Notes",
     "url": "https://jrhea.github.io/2013/11/12/Cryptocurrency-Notes.html",
     "datePublished": "2013-11-12T06:00:00.000Z",
-    "dateModified": "2016-01-01T08:54:59.256Z",
+    "dateModified": "2016-01-01T09:02:37.469Z",
     "description": "1. Mining 1.1. Bitcoin TODO: import old notes 1.2. Altcoins TODO: import old notes 1.3. Ethereum 1.3.1. Update to Xubuntu 14.04 Updated old alt coin mining rig from Xubuntu 12.10 to 13.10..."
 }
     </script>
@@ -320,22 +320,9 @@ export GPU_MAX_ALLOC_PERCENT=95</pre>
 <pre>make geth</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Still had issues with gpu mining in geth and i had to uninstall old fglrx deb files:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>sudo dpkg -P fglrx fglrx-amdcccle fglrx-core fglrx-updates-core fglrx-updates fglrx-amdcccle-updates</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Verify it is uninstalled:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>sudo dpkg -l fglrx*</pre>
-</div>
-</div>
+<div class="sect3">
+<h4 id="_ati_amd_config">1.3.3. ATI/AMD Config</h4>
 <div class="paragraph">
 <p>Next install fglrx-updates package:</p>
 </div>
@@ -371,6 +358,47 @@ sudo reboot</pre>
 <pre>sudo aticonfig --initial -f --adapter=all</pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_fglrx_issues">1.3.4. FGLRX Issues</h4>
+<div class="paragraph">
+<p>Still had issues with gpu mining in geth and it turns out that I had remnants from a previous fglrx install that was causing issues:</p>
+</div>
+<div class="paragraph">
+<p>Figure out what is hangining around</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -l fglrx*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Purge the old</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -P fglrx fglrx-amdcccle fglrx-core fglrx-updates-core fglrx-updates fglrx-amdcccle-updates</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify it is uninstalled:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -l fglrx*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next install fglrx-updates package:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install fglrx-updates</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_amd_ati_issues">1.3.5. AMD/ATI Issues</h4>
 <div class="paragraph">
 <p>I noticed that I couldn’t do:</p>
 </div>
