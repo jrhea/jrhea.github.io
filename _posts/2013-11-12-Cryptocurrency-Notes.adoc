@@ -17,7 +17,9 @@ TODO: import old notes
 
 TODO: import old notes
 
-=== Ethereum
+=== Ethereum Mining Setup
+
+I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn't the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this is supposed to be fun!
 
 ==== Update to Xubuntu 14.04
 
