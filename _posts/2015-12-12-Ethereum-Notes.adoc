@@ -12,7 +12,7 @@
 
 I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn't the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this is supposed to be fun!
 
-==== Update to Xubuntu 14.04
+=== Update to Xubuntu 14.04
 
 Updated old alt coin mining rig from Xubuntu 12.10 to 13.10
 
@@ -53,7 +53,7 @@ sudo do-release-upgrade
 
 Then upgraded to 14.04 so I could use the Ethereum PPAs
 
-==== Build Geth
+=== Build Geth
 
 Download the latest Go:
 ----
@@ -104,7 +104,7 @@ build geth:
 make geth
 ----
 
-==== ATI/AMD Config
+=== ATI/AMD Config
 
 Next install fglrx-updates package:
 ----
@@ -131,7 +131,7 @@ Bust an aticonfig init to generate a new xorg.conf
 sudo aticonfig --initial -f --adapter=all
 ----
 
-==== FGLRX Issues
+=== FGLRX Issues
 Still had issues with gpu mining in geth and it turns out that I had remnants from a previous fglrx install that was causing issues:
 
 Figure out what is hangining around
@@ -155,7 +155,7 @@ sudo apt-get install fglrx-updates
 ----
 
 
-==== AMD/ATI Issues
+=== AMD/ATI Issues
 
 I noticed that I couldn’t do:
 ----
@@ -176,7 +176,7 @@ task
 exec gpu-manager --log /var/log/gpu-manager.log
 ----
 
-==== Wireless Networking Issues
+=== Wireless Networking Issues
 
 I was getting tons of connectivity issues when connected to mining pools AND my own ad hoc mining pool at home.  The errors looked like this:
 
