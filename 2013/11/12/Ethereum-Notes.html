@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Ethereum Notes - jonny rhea</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ethereum Notes">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ethereum Notes">
+    <meta property="og:description" content="">
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="//jrhea.github.io/themes/uno/assets/css/uno.css?v=1.0.0" />
+
+    <link rel="canonical" href="https://jrhea.github.io/2013/11/12/Ethereum-Notes.html" />
+    
+    <meta property="og:site_name" content="jonny rhea" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ethereum Notes" />
+    <meta property="og:description" content="1. Mining Setup I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn&amp;#8217;t the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this is..." />
+    <meta property="og:url" content="https://jrhea.github.io/2013/11/12/Ethereum-Notes.html" />
+    <meta property="article:published_time" content="2013-11-12T06:00:00.000Z" />
+    <meta property="article:modified_time" content="2016-01-01T19:16:11.210Z" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Ethereum Notes" />
+    <meta name="twitter:description" content="1. Mining Setup I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn&amp;#8217;t the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this is..." />
+    <meta name="twitter:url" content="https://jrhea.github.io/2013/11/12/Ethereum-Notes.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "jonny rhea",
+    "author": {
+        "@type": "Person",
+        "name": "Jonny Rhea",
+        "image": "https://avatars.githubusercontent.com/u/5555162?v=3",
+        "url": "undefined/author/undefined",
+        "sameAs": null
+    },
+    "headline": "Ethereum Notes",
+    "url": "https://jrhea.github.io/2013/11/12/Ethereum-Notes.html",
+    "datePublished": "2013-11-12T06:00:00.000Z",
+    "dateModified": "2016-01-01T19:16:11.210Z",
+    "description": "1. Mining Setup I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn&amp;#8217;t the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this is..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost ?" />
+    <link rel="alternate" type="application/rss+xml" title="jonny rhea" href="https://jrhea.github.io/rss" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+
+</head>
+<body class="post-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed " style="background-image: url(https://jrhea.github.io/images/whoru.png)">
+      <div class="panel-main">
+    
+        <div class="panel-main__inner panel-inverted">
+        <div class="panel-main__content">
+    
+            <a href="https://jrhea.github.io" title="link to homepage for jonny rhea"><img src="https://jrhea.github.io/images/cube_solve.gif" width="80" alt="jonny rhea logo" class="panel-cover__logo logo" /></a>
+            <h1 class="panel-cover__title panel-title"><a href="https://jrhea.github.io" title="link to homepage for jonny rhea">jonny rhea</a></h1>
+            <hr class="panel-cover__divider" />
+            <p class="panel-cover__description">Right. Well, I mean when it came to stuff like that... I could always just play.</p>
+            <hr class="panel-cover__divider panel-cover__divider--secondary" />
+    
+            <div class="navigation-wrapper">
+    
+              <nav class="cover-navigation cover-navigation--primary">
+                <ul class="navigation">
+                  <li class="navigation__item"><a href="https://jrhea.github.io/#blog" title="link to jonny rhea blog" class="blog-button">Blog</a></li>
+                </ul>
+              </nav>
+    
+              
+              
+              <nav class="cover-navigation navigation--social">
+                <ul class="navigation">
+              
+              
+              
+              
+                  <!-- Github -->
+                  <li class="navigation__item">
+                    <a href="https://github.com/jrhea" title="Github account">
+                      <i class='icon icon-social-github'></i>
+                      <span class="label">Github</span>
+                    </a>
+                  </li>
+                  </li>
+              
+              
+              
+              
+                  <!-- LinkedIn -->
+                  <li class="navigation__item">
+                    <a href="https://www.linkedin.com/in/jrhea" title="LinkedIn account">
+                      <i class='icon icon-social-linkedin'></i>
+                      <span class="label">LinkedIn</span>
+                    </a>
+                  </li>
+              
+                  <!-- Email -->
+                  <li class="navigation__item">
+                    <a href="mailto:jonathan.rhea@gmail.com" title="Email jonathan.rhea@gmail.com">
+                      <i class='icon icon-mail'></i>
+                      <span class="label">Email</span>
+                    </a>
+                  </li>
+              
+                </ul>
+              </nav>
+              
+    
+            </div>
+    
+          </div>
+    
+        </div>
+    
+        <div class="panel-cover--overlay"></div>
+      </div>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="12 Nov 2013" class="post-meta__date date">12 Nov 2013</time> &#8226; <span class="post-meta__tags tags"></span>
+        <span class="post-meta__author author"><img src="https://avatars.githubusercontent.com/u/5555162?v=3" alt="profile image for Jonny Rhea" class="avatar post-meta__avatar" /> by Jonny Rhea</span>
+      </div>
+      <h1 class="post-title">Ethereum Notes</h1>
+    </header>
+
+    <section class="post">
+      <div class="sect1">
+<h2 id="_mining_setup">1. Mining Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn&#8217;t the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this is supposed to be fun!</p>
+</div>
+<div class="sect3">
+<h4 id="_update_to_xubuntu_14_04">1.1. Update to Xubuntu 14.04</h4>
+<div class="paragraph">
+<p>Updated old alt coin mining rig from Xubuntu 12.10 to 13.10</p>
+</div>
+<div class="paragraph">
+<p>Update /etc/apt/sources.list to EOL sources list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>## EOL upgrade sources.list
+deb http://old-releases.ubuntu.com/ubuntu/ quantal main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ quantal-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ quantal-security main restricted universe multiverse</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Installed aptitude:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install aptitude</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>install update manager packages (might already be there):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo aptitude install update-manager-core update-manager</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>double check desktop package name (should be obvious considerin I am running Xubuntu:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>dpkg -l | grep tu-desktop</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>installing xubuntu desktop:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo aptitude install xubuntu-desktop</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>now upgrade:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get update
+sudo apt-get dist-upgrade
+sudo do-release-upgrade</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then upgraded to 14.04 so I could use the Ethereum PPAs</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_build_geth">1.2. Build Geth</h4>
+<div class="paragraph">
+<p>Download the latest Go:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>curl -O https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unpack:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>tar -C /usr/local -xzf go1.4.2.linux-amd64.tar.gz</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Set GOPATH and PATH:</p>
+</div>
+<div class="paragraph">
+<p>For Go to work properly, you need to set the following two environment variables:</p>
+</div>
+<div class="paragraph">
+<p>Setup a go folder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mkdir -p ~/go; echo "export GOPATH=$HOME/go" &gt;&gt; ~/.bashrc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Update your path:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>echo "export PATH=$PATH:$HOME/go/bin:/usr/local/go/bin" &gt;&gt; ~/.bashrc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Read the environment variables into current session:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>source ~/.bashrc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>install required libs for get build:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install -y build-essential libgmp3-dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>clone geth:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/ethereum/go-ethereum
+cd go-ethereum</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>enable OpenCL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>export GO_OPENCL=true
+export GPU_MAX_ALLOC_PERCENT=95</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>build geth:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>make geth</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ati_amd_config">1.3. ATI/AMD Config</h4>
+<div class="paragraph">
+<p>Next install fglrx-updates package:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install fglrx-updates</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Downloaded
+<a href="http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/">AMDAPPSDK 3.0</a></p>
+</div>
+<div class="paragraph">
+<p>Extract it to /opt/AMDAPPSDK-3.0 then:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ln -sf /opt/AMDAPPSDK-3.0 /opt/AMDAPP
+ln -s /opt/AMDAPP/include/CL /usr/include
+ln -sf /opt/AMDAPP/include/CL /usr/include
+sudo ln -sf /opt/AMDAPP/include/CL /usr/include
+sudo ln -sf /opt/AMDAPP/lib/x86_64/* /usr/lib/
+ldconfig
+sudo ldconfig
+sudo reboot</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bust an aticonfig init to generate a new xorg.conf</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo aticonfig --initial -f --adapter=all</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fglrx_issues">1.4. FGLRX Issues</h4>
+<div class="paragraph">
+<p>Still had issues with gpu mining in geth and it turns out that I had remnants from a previous fglrx install that was causing issues:</p>
+</div>
+<div class="paragraph">
+<p>Figure out what is hangining around</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -l fglrx*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Purge the old</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -P fglrx fglrx-amdcccle fglrx-core fglrx-updates-core fglrx-updates fglrx-amdcccle-updates</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify it is uninstalled:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -l fglrx*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next install fglrx-updates package:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install fglrx-updates</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_amd_ati_issues">1.5. AMD/ATI Issues</h4>
+<div class="paragraph">
+<p>I noticed that I couldn’t do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>aticonfig --odsc=&lt;clock speed,mem speed&gt; --adapter=all.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it would only work for first adapter.  Also, I noticed that xorg.conf is overwritten on reboot.</p>
+</div>
+<div class="paragraph">
+<p>Turns out that gnu-manager is taking precedence over aticonfig.  To fix this:</p>
+</div>
+<div class="paragraph">
+<p>I edited /etc/init/gpu-manager.conf so that it now contains:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#start on (starting lightdm
+#          or starting kdm
+#          or starting xdm
+#          or starting lxdm)
+task
+exec gpu-manager --log /var/log/gpu-manager.log</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wireless_networking_issues">1.6. Wireless Networking Issues</h4>
+<div class="paragraph">
+<p>I was getting tons of connectivity issues when connected to mining pools AND my own ad hoc mining pool at home.  The errors looked like this:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>  ✘  02:16:02.895|ethminer  Failed to submit hashrate.
+  ✘  02:16:02.896|ethminer  Dynamic exception type: jsonrpc::JsonRpcException
+std::exception::what: Exception -32003 : Client connector error: libcurl error: 28 -&gt; Operation timed out</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Two of my rigs are using wireless networking usb sticks and rather than running ethernet cables into my garage where those two rigs are running, I opted to tweak the wireless settings:</p>
+</div>
+<div class="paragraph">
+<p><strong>Basic info:</strong> Check the basic settings by runing this command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ iwconfig wlan1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Fragment packets:</strong>
+This hurts throughput, but makes the packets much more likely to be delivered:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ sudo iwconfig wlan1 frag 256</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Enable rts handshaking:</strong> Before sending a packet, handshake with the AP to guarantee that it is listening. This really hurts your throughput but does wonders for getting the attention of the access point. The default is to only perform the handshake on packets bigger than 2kB. The following command forces it for all packets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ sudo iwconfig wlan1 rts 1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Increase number of retries:</strong> Seven is the default retry value. Set it to thirty by running this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ sudo iwconfig wlan1 retry 30</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </section>
+
+  </article>
+
+
+
+
+            <footer class="footer">
+                <span class="footer__copyright">&copy; 2016. All rights reserved.</span>
+                <span class="footer__copyright"><a href="http://uno.daleanthony.com" title="link to page for Uno Ghost theme">Uno theme</a> by <a href="http://daleanthony.com" title="link to website for Dale-Anthony">Dale-Anthony</a></span>
+                <span class="footer__copyright">Proudly published with <a href="http://hubpress.io" title="link to Hubpress website">Hubpress</a></span>
+            </footer>
+        </div>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();      
+      </script>
+
+    <script type="text/javascript" src="//jrhea.github.io/themes/uno/assets/js/main.js?v=1.0.0"></script>
+    
+
+</body>
+</html>
