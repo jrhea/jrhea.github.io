@@ -184,3 +184,39 @@ I edited /etc/init/gpu-manager.conf so that it now contains:
 task
 exec gpu-manager --log /var/log/gpu-manager.log
 ----
+
+==== Wireless Networking Issues
+
+I was getting tons of connectivity issues when connected to mining pools AND my own ad hoc mining pool at home.  The errors looked like this:
+
+****
+  ✘  02:16:02.895|ethminer  Failed to submit hashrate.
+  ✘  02:16:02.896|ethminer  Dynamic exception type: jsonrpc::JsonRpcException
+std::exception::what: Exception -32003 : Client connector error: libcurl error: 28 -> Operation timed out
+****
+
+Two of my rigs are using wireless networking usb sticks and rather than running ethernet cables into my garage where those two rigs are running, I opted to tweak the wireless settings:
+
+*Basic info:* Check the basic settings by runing this command.
+
+----
+$ iwconfig wlan1
+----
+
+*Fragment packets:*
+This hurts throughput, but makes the packets much more likely to be delivered:
+----
+$ sudo iwconfig wlan1 frag 256
+----
+
+*Enable rts handshaking:* Before sending a packet, handshake with the AP to guarantee that it is listening. This really hurts your throughput but does wonders for getting the attention of the access point. The default is to only perform the handshake on packets bigger than 2kB. The following command forces it for all packets:
+
+----
+$ sudo iwconfig wlan1 rts 1
+----
+
+*Increase number of retries:* Seven is the default retry value. Set it to thirty by running this command:
+
+----
+$ sudo iwconfig wlan1 retry 30
+----
