@@ -1,4 +1,4 @@
-= Cryptocurrency Notes
+= Ethereum Notes
 :author: jonny rhea
 :doctype: notes
 :encoding: utf-8
@@ -8,16 +8,7 @@
 :numbered:
 
 [index]
-== Mining
-=== Bitcoin
-
-TODO: import old notes
-
-=== Altcoins
-
-TODO: import old notes
-
-=== Ethereum Mining Setup
+== Mining Setup
 
 I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn't the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this is supposed to be fun!
 
