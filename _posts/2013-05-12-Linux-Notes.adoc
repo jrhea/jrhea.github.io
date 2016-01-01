@@ -10,6 +10,8 @@
 
 [index]
 == general commands
+Just some general commands that are useful to know.
+
 === find
 Search the current dir (and below) for a file named sue:
 ----
