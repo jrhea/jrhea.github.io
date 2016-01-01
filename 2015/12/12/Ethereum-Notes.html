@@ -35,7 +35,7 @@
     <meta property="og:description" content="1. Mining Rig Setup I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn&amp;#8217;t the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this..." />
     <meta property="og:url" content="https://jrhea.github.io/2015/12/12/Ethereum-Notes.html" />
     <meta property="article:published_time" content="2015-12-12T06:00:00.000Z" />
-    <meta property="article:modified_time" content="2016-01-01T19:29:17.994Z" />
+    <meta property="article:modified_time" content="2016-01-01T19:44:54.899Z" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Ethereum Notes" />
@@ -57,7 +57,7 @@
     "headline": "Ethereum Notes",
     "url": "https://jrhea.github.io/2015/12/12/Ethereum-Notes.html",
     "datePublished": "2015-12-12T06:00:00.000Z",
-    "dateModified": "2016-01-01T19:29:17.994Z",
+    "dateModified": "2016-01-01T19:44:54.899Z",
     "description": "1. Mining Rig Setup I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn&amp;#8217;t the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this..."
 }
     </script>
@@ -515,6 +515,47 @@ This hurts throughput, but makes the packets much more likely to be delivered:</
 </div>
 </div>
 <div class="paragraph">
+<p>start geth as an rpc node so other ethminer&#8217;s can connect:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth --maxpeers '100' --rpc --rpcaddr "0.0.0.0" --rpcport 8545 --autodag --rpcapi "db,eth,net,web3,miner" console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>run get without syncing db:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth --maxpeers "0" console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>import account from another machine:
+1)  copy keystone dir (or file) into ~/.ethereum/keystore</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>scp -r ~/.ethereum/keystore user@machine:~/.ethereum</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2) unlock account:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth --unlock=0x00000000000000000000000000000
+$ geth account import ~/.ethereum/keystore/file</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You will have to enter your passphrase</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
 <p>create a passphrase:</p>
 </div>
 <div class="listingblock">
@@ -575,7 +616,7 @@ This hurts throughput, but makes the packets much more likely to be delivered:</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>web3.eth.syncing.currentBlock</pre>
+<pre>&gt; web3.eth.syncing.currentBlock</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -583,7 +624,23 @@ This hurts throughput, but makes the packets much more likely to be delivered:</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>web3.eth.syncing.highestBlock</pre>
+<pre>&gt; web3.eth.syncing.highestBlock</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get block info:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.eth.getBlock(web3.eth.blockNumber);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get block difficulty:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.eth.getBlock(web3.eth.blockNumber).difficulty</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -597,7 +654,28 @@ This hurts throughput, but makes the packets much more likely to be delivered:</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_aticonfig_commands">3. aticonfig commands</h2>
+<h2 id="_ethminer_commands">3. ethminer commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Start mining with ethminer (geth is running locally):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ethminer --farm-recheck 100 --no-precompute -G -F http://127.0.0.1:8545</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start mining with ethminer (geth is running on another machine):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ethminer --farm-recheck 100 --no-precompute -G -F http://192.168.1..105:8545</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_aticonfig_commands">4. aticonfig commands</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>check gpu temp:</p>
@@ -645,6 +723,14 @@ This hurts throughput, but makes the packets much more likely to be delivered:</
 <div class="listingblock">
 <div class="content">
 <pre>$ env DISPLAY=:0.N aticonfig --pplib-cmd "set fanspeed 0 X”</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>continuously monitor gpu temp and load:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ watch -n 3 aticonfig --adapter=ALL --odgt --odgc</pre>
 </div>
 </div>
 </div>
