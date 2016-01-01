@@ -238,6 +238,29 @@ start GPU mining with geth (multi gpu, autogen DAG, set address, open console):
 $ geth --mine --minergpus "0,1,2" --autodag --etherbase "0x9884780af266ef60e9f101fe614a00332c6436be" console
 ----
 
+start geth as an rpc node so other ethminer's can connect:
+----
+$ geth --maxpeers '100' --rpc --rpcaddr "0.0.0.0" --rpcport 8545 --autodag --rpcapi "db,eth,net,web3,miner" console
+----
+
+run get without syncing db:
+----
+$ geth --maxpeers "0" console
+----
+
+import account from another machine:
+1)  copy keystone dir (or file) into ~/.ethereum/keystore
+----
+scp -r ~/.ethereum/keystore user@machine:~/.ethereum
+----
+
+2) unlock account:
+----
+$ geth --unlock=0x00000000000000000000000000000
+$ geth account import ~/.ethereum/keystore/file 
+----
+* You will have to enter your passphrase
+
 create a passphrase:
 ----
 > personal.newAccount("luke i am your father")
@@ -278,19 +301,42 @@ check hashrate:
 figure out current block that you have sync’d to:
 
 ----
-web3.eth.syncing.currentBlock
+> web3.eth.syncing.currentBlock
 ----
 
 highest block:
 ----
-web3.eth.syncing.highestBlock
+> web3.eth.syncing.highestBlock
 ----
 
+Get block info:
+----
+> web3.eth.getBlock(web3.eth.blockNumber);
+----
+
+Get block difficulty:
+----
+> web3.eth.getBlock(web3.eth.blockNumber).difficulty
+----
 
 load a script from a file:
 ----
 > loadScript("/home/user/foo.js”)
 ----
+
+[index]
+== ethminer commands
+
+Start mining with ethminer (geth is running locally):
+----
+$ ethminer --farm-recheck 100 --no-precompute -G -F http://127.0.0.1:8545
+----
+
+Start mining with ethminer (geth is running on another machine):
+----
+$ ethminer --farm-recheck 100 --no-precompute -G -F http://192.168.1..105:8545
+----
+
 
 [index]
 == aticonfig commands
@@ -323,4 +369,9 @@ $ env DISPLAY=:0.N aticonfig --pplib-cmd "get fanspeed 0"
 set fanspeed X for GPU N:
 ----
 $ env DISPLAY=:0.N aticonfig --pplib-cmd "set fanspeed 0 X”
+----
+
+continuously monitor gpu temp and load:
+----
+$ watch -n 3 aticonfig --adapter=ALL --odgt --odgc 
 ----
