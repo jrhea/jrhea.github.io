@@ -213,7 +213,7 @@ $ sudo iwconfig wlan1 retry 30
 ----
 
 [index]
-== Geth Commands
+== geth commands
 log into the console and hide messages:
 ----
 $ geth console 2>>geth.log
