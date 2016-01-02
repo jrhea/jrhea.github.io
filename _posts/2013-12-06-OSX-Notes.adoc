@@ -49,6 +49,28 @@ sudo launchctl start com.openssh.sshd
 ----
 
 [index]
+== Terminal App
+
+=== SSH Session: Page Up/Down and Home/End
+Menu Bar -> Terminal -> Preferences -> Profile Tab +
+- Select your current Settings theme +
+- Click the Keyboard tab: +
+  Edit (or Add) the entry for Home: +
+    Action: Send Text +
+    String: \001 (or press Ctrl+a) +
+  Edit (or Add) the entry for End: +
+    Action: Send Text +
+    String: \005 (or press Ctrl+e) +
+  Edit (or Add) the entry for Page Up: +
+    Action: Send Text +
+    String: \033[5~ +
+  Edit (or Add) the entry for Page Down: +
+    Action: Send Text +
+    String: \033[6~ +
+- Close the settings window. +
+
+
+[index]
 == X11 Forwarding
 
 We need an X.Org X Windowing System for OSX: 
