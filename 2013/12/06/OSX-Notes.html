@@ -35,7 +35,7 @@
     <meta property="og:description" content="1. Create a bootable debian usb drive download a debian iso and then convert iso to dmg: hdiutil convert -format UDRW -o debian.img debian-7.2.0-amd64-netinst.iso list devices and find usb drive: diskutil list parition usb drive: diskutil..." />
     <meta property="og:url" content="https://jrhea.github.io/2013/12/06/OSX-Notes.html" />
     <meta property="article:published_time" content="2013-12-06T06:00:00.000Z" />
-    <meta property="article:modified_time" content="2015-12-20T20:45:49.166Z" />
+    <meta property="article:modified_time" content="2016-01-02T18:48:13.210Z" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="OSX Notes" />
@@ -57,7 +57,7 @@
     "headline": "OSX Notes",
     "url": "https://jrhea.github.io/2013/12/06/OSX-Notes.html",
     "datePublished": "2013-12-06T06:00:00.000Z",
-    "dateModified": "2015-12-20T20:45:49.166Z",
+    "dateModified": "2016-01-02T18:48:13.210Z",
     "description": "1. Create a bootable debian usb drive download a debian iso and then convert iso to dmg: hdiutil convert -format UDRW -o debian.img debian-7.2.0-amd64-netinst.iso list devices and find usb drive: diskutil list parition usb drive: diskutil..."
 }
     </script>
@@ -226,7 +226,33 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_x11_forwarding">3. X11 Forwarding</h2>
+<h2 id="_terminal_app">3. Terminal App</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ssh_session_page_up_down_and_home_end">3.1. SSH Session: Page Up/Down and Home/End</h3>
+<div class="paragraph">
+<p>Menu Bar &#8594; Terminal &#8594; Preferences &#8594; Profile Tab<br>
+- Select your current Settings theme<br>
+- Click the Keyboard tab:<br>
+  Edit (or Add) the entry for Home:<br>
+    Action: Send Text<br>
+    String: \001 (or press Ctrl+a)<br>
+  Edit (or Add) the entry for End:<br>
+    Action: Send Text<br>
+    String: \005 (or press Ctrl+e)<br>
+  Edit (or Add) the entry for Page Up:<br>
+    Action: Send Text<br>
+    String: \033[5~<br>
+  Edit (or Add) the entry for Page Down:<br>
+    Action: Send Text<br>
+    String: \033[6~<br>
+- Close the settings window.<br></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_x11_forwarding">4. X11 Forwarding</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We need an X.Org X Windowing System for OSX:</p>
@@ -276,7 +302,7 @@ XauthLocation /opt/X11/bin/xauth</pre>
 
 
             <footer class="footer">
-                <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+                <span class="footer__copyright">&copy; 2016. All rights reserved.</span>
                 <span class="footer__copyright"><a href="http://uno.daleanthony.com" title="link to page for Uno Ghost theme">Uno theme</a> by <a href="http://daleanthony.com" title="link to website for Dale-Anthony">Dale-Anthony</a></span>
                 <span class="footer__copyright">Proudly published with <a href="http://hubpress.io" title="link to Hubpress website">Hubpress</a></span>
             </footer>
