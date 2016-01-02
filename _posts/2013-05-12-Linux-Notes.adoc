@@ -53,7 +53,7 @@ Shortcuts:
 ****
 switch between different views: *Ctrl+b space* +
 scroll up/down: *Ctrl+b [* +
-split screen vertically: *Ctrl+b %*
+split screen vertically: *Ctrl+b %* +
 ****
 
 [index]
