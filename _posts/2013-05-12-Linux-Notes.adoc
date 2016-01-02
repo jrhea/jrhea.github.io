@@ -49,7 +49,7 @@ Attach to a session (N is the session number):
 $ tmux attach -t N
 ----
 
-Shortcuts: +
+Shortcuts:
 ****
 switch between different views: *Ctrl+b space* +
 scroll up/down: *Ctrl+b [* +
