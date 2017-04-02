@@ -1,1 +1,40 @@
-{"meta":{"username":"jrhea","repositoryName":"jrhea.github.io","branch":"master"},"site":{"title":"jonny rhea","description":"Right. Well, I mean when it came to stuff like that... I could always just play.","logo":"https://jrhea.github.io/images/cube_solve.gif","cover":"https://jrhea.github.io/images/whoru.png","postsPerPage":"5","url":"https://jrhea.github.io"},"socialnetwork":{"email":"jonathan.rhea@gmail.com","linkedin":"https://www.linkedin.com/in/jrhea","github":"https://github.com/jrhea"},"theme":{"name":"uno","url":"//jrhea.github.io/themes/uno"}}
+{
+  "meta": {
+    "username": "jrhea",
+    "repositoryName": "jrhea.github.io",
+    "branch": "master"
+  },
+  "site": {
+    "title": "jonny rhea",
+    "description": "Right. Well, I mean when it came to stuff like that... I could always just play.",
+    "logo": "https://jrhea.github.io/images/cube_solve.gif",
+    "cover": "https://jrhea.github.io/images/whoru.png",
+    "postsPerPage": "5",
+    "url": "https://jrhea.github.io"
+  },
+  "socialnetwork": {
+    "email": "jonathan.rhea@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/jrhea",
+    "github": "https://github.com/jrhea"
+  },
+  "theme": {
+    "name": "uno",
+    "url": "//jrhea.github.io/themes/uno"
+  },
+  "urls": {
+    "site": "https://jrhea.github.io",
+    "hubpress": "http://jrhea.github.io",
+    "theme": "//jrhea.github.io/themes/uno",
+    "images": "https://jrhea.github.io/images"
+  },
+  "initialisationConfigComponent": {
+    "name": "initialise-configuration",
+    "computed": {},
+    "methods": {},
+    "staticRenderFns": [
+      null,
+      null,
+      null
+    ]
+  }
+}
