@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[jonny rhea]]></title><description><![CDATA[Right. Well, I mean when it came to stuff like that... I could always just play.]]></description><link>https://jrhea.github.io</link><image><url>https://jrhea.github.io/images/whoru.png</url><title>jonny rhea</title><link>https://jrhea.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 02 Apr 2017 02:34:01 GMT</lastBuildDate><atom:link href="https://jrhea.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Ethereum Notes]]></title><description><![CDATA[<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_mining_rig_setup">1. Mining Rig Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_update_to_xubuntu_14_04">1.1. Update to Xubuntu 14.04</a></li>
+<li><a href="#_build_geth">1.2. Build Geth</a></li>
+<li><a href="#_ati_amd_config">1.3. ATI/AMD Config</a></li>
+<li><a href="#_fglrx_issues">1.4. FGLRX Issues</a></li>
+<li><a href="#_amd_ati_issues">1.5. AMD/ATI Issues</a></li>
+<li><a href="#_wireless_networking_issues">1.6. Wireless Networking Issues</a></li>
+</ul>
+</li>
+<li><a href="#_geth_commands">2. geth commands</a></li>
+<li><a href="#_ethminer_commands">3. ethminer commands</a></li>
+<li><a href="#_aticonfig_commands">4. aticonfig commands</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_mining_rig_setup">1. Mining Rig Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I opted to update the OS on my old rigs that used to mine Scrypt/Scrypt-N coins.  Probably wasn&#8217;t the easiest route, but you never learn anything if nothing goes wrong!  Remember kids, this is supposed to be fun!</p>
+</div>
+<div class="sect2">
+<h3 id="_update_to_xubuntu_14_04">1.1. Update to Xubuntu 14.04</h3>
+<div class="paragraph">
+<p>Updated old alt coin mining rig from Xubuntu 12.10 to 13.10</p>
+</div>
+<div class="paragraph">
+<p>Update /etc/apt/sources.list to EOL sources list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>## EOL upgrade sources.list
+deb http://old-releases.ubuntu.com/ubuntu/ quantal main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ quantal-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ quantal-security main restricted universe multiverse</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Installed aptitude:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install aptitude</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>install update manager packages (might already be there):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo aptitude install update-manager-core update-manager</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>double check desktop package name (should be obvious considerin I am running Xubuntu:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>dpkg -l | grep tu-desktop</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>installing xubuntu desktop:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo aptitude install xubuntu-desktop</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>now upgrade:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get update
+sudo apt-get dist-upgrade
+sudo do-release-upgrade</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then upgraded to 14.04 so I could use the Ethereum PPAs</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_geth">1.2. Build Geth</h3>
+<div class="paragraph">
+<p>Download the latest Go:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>curl -O https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unpack:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>tar -C /usr/local -xzf go1.4.2.linux-amd64.tar.gz</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Set GOPATH and PATH:</p>
+</div>
+<div class="paragraph">
+<p>For Go to work properly, you need to set the following two environment variables:</p>
+</div>
+<div class="paragraph">
+<p>Setup a go folder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mkdir -p ~/go; echo "export GOPATH=$HOME/go" &gt;&gt; ~/.bashrc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Update your path:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>echo "export PATH=$PATH:$HOME/go/bin:/usr/local/go/bin" &gt;&gt; ~/.bashrc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Read the environment variables into current session:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>source ~/.bashrc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>install required libs for get build:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install -y build-essential libgmp3-dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>clone geth:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/ethereum/go-ethereum
+cd go-ethereum</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>enable OpenCL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>export GO_OPENCL=true
+export GPU_MAX_ALLOC_PERCENT=95</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>build geth:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>make geth</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ati_amd_config">1.3. ATI/AMD Config</h3>
+<div class="paragraph">
+<p>Next install fglrx-updates package:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install fglrx-updates</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Downloaded
+<a href="http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/">AMDAPPSDK 3.0</a></p>
+</div>
+<div class="paragraph">
+<p>Extract it to /opt/AMDAPPSDK-3.0 then:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ln -sf /opt/AMDAPPSDK-3.0 /opt/AMDAPP
+ln -s /opt/AMDAPP/include/CL /usr/include
+ln -sf /opt/AMDAPP/include/CL /usr/include
+sudo ln -sf /opt/AMDAPP/include/CL /usr/include
+sudo ln -sf /opt/AMDAPP/lib/x86_64/* /usr/lib/
+ldconfig
+sudo ldconfig
+sudo reboot</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bust an aticonfig init to generate a new xorg.conf</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo aticonfig --initial -f --adapter=all</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fglrx_issues">1.4. FGLRX Issues</h3>
+<div class="paragraph">
+<p>Still had issues with gpu mining in geth and it turns out that I had remnants from a previous fglrx install that was causing issues:</p>
+</div>
+<div class="paragraph">
+<p>Figure out what is hangining around</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -l fglrx*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Purge the old</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -P fglrx fglrx-amdcccle fglrx-core fglrx-updates-core fglrx-updates fglrx-amdcccle-updates</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify it is uninstalled:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dpkg -l fglrx*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next install fglrx-updates package:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install fglrx-updates</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_amd_ati_issues">1.5. AMD/ATI Issues</h3>
+<div class="paragraph">
+<p>I noticed that I couldn’t do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>aticonfig --odsc=&lt;clock speed,mem speed&gt; --adapter=all.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it would only work for first adapter.  Also, I noticed that xorg.conf is overwritten on reboot.</p>
+</div>
+<div class="paragraph">
+<p>Turns out that gnu-manager is taking precedence over aticonfig.  To fix this:</p>
+</div>
+<div class="paragraph">
+<p>I edited /etc/init/gpu-manager.conf so that it now contains:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#start on (starting lightdm
+#          or starting kdm
+#          or starting xdm
+#          or starting lxdm)
+task
+exec gpu-manager --log /var/log/gpu-manager.log</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wireless_networking_issues">1.6. Wireless Networking Issues</h3>
+<div class="paragraph">
+<p>I was getting tons of connectivity issues when connected to mining pools AND my own ad hoc mining pool at home.  The errors looked like this:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>  ✘  02:16:02.895|ethminer  Failed to submit hashrate.
+  ✘  02:16:02.896|ethminer  Dynamic exception type: jsonrpc::JsonRpcException
+std::exception::what: Exception -32003 : Client connector error: libcurl error: 28 -&gt; Operation timed out</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Two of my rigs are using wireless networking usb sticks and rather than running ethernet cables into my garage where those two rigs are running, I opted to tweak the wireless settings:</p>
+</div>
+<div class="paragraph">
+<p><strong>Basic info:</strong> Check the basic settings by runing this command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ iwconfig wlan1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Fragment packets:</strong>
+This hurts throughput, but makes the packets much more likely to be delivered:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ sudo iwconfig wlan1 frag 256</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Enable rts handshaking:</strong> Before sending a packet, handshake with the AP to guarantee that it is listening. This really hurts your throughput but does wonders for getting the attention of the access point. The default is to only perform the handshake on packets bigger than 2kB. The following command forces it for all packets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ sudo iwconfig wlan1 rts 1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Increase number of retries:</strong> Seven is the default retry value. Set it to thirty by running this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ sudo iwconfig wlan1 retry 30</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_geth_commands">2. geth commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>log into the console and hide messages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth console 2&gt;&gt;geth.log</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>log into console and print messages to screen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>create a second session and attach to the first so you can ignore messages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth attach</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>sync with blockchain (fast):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth --fast</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>start GPU mining with geth (multi gpu, autogen DAG, set address, open console):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth --mine --minergpus "0,1,2" --autodag --etherbase "0x9884780af266ef60e9f101fe614a00332c6436be" console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>start geth as an rpc node so other ethminer&#8217;s can connect:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth --maxpeers '100' --rpc --rpcaddr "0.0.0.0" --rpcport 8545 --autodag --rpcapi "db,eth,net,web3,miner" console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>run get without syncing db:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth --maxpeers "0" console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>import account from another machine:
+1)  copy keystone dir (or file) into ~/.ethereum/keystore</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>scp -r ~/.ethereum/keystore user@machine:~/.ethereum</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2) unlock account:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ geth --unlock=0x00000000000000000000000000000
+$ geth account import ~/.ethereum/keystore/file</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You will have to enter your passphrase</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>create a passphrase:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; personal.newAccount("luke i am your father")</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>view all accounts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.eth.accounts</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>get the balance of a specific account:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.fromWei(eth.getBalance(web3.eth.accounts[0]), "ether")</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ensure your rig is mining to your address:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.eth.coinbase</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>if the command above returns "0x0" then your are mining into a black hole.  fix this by running this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.miner.setEtherbase(web3.eth.accounts[0])</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>get balance of account your are mining into:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.fromWei(eth.getBalance(eth.coinbase), "ether")</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>check hashrate:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; miner.hashrate</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>figure out current block that you have sync’d to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.eth.syncing.currentBlock</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>highest block:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.eth.syncing.highestBlock</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get block info:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.eth.getBlock(web3.eth.blockNumber);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get block difficulty:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; web3.eth.getBlock(web3.eth.blockNumber).difficulty</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>load a script from a file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; loadScript("/home/user/foo.js”)</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ethminer_commands">3. ethminer commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Start mining with ethminer (geth is running locally):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ethminer --farm-recheck 100 --no-precompute -G -F http://127.0.0.1:8545</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start mining with ethminer (geth is running on another machine):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ethminer --farm-recheck 100 --no-precompute -G -F http://192.168.1..105:8545</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_aticonfig_commands">4. aticonfig commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>check gpu temp:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ aticonfig --adapter=all --odgt</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>check gpu clock speed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ aticonfig --adapter=all --odgc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>enable overdrive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ aticonfig --od-enable</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>set clockspeed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ aticonfig --adapter=all --odsc=&lt;gpu speed,memory speed&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>get fanspeed for GPU N:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ env DISPLAY=:0.N aticonfig --pplib-cmd "get fanspeed 0"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>set fanspeed X for GPU N:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ env DISPLAY=:0.N aticonfig --pplib-cmd "set fanspeed 0 X”</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>continuously monitor gpu temp and load:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ watch -n 3 aticonfig --adapter=ALL --odgt --odgc</pre>
+</div>
+</div>
+</div>
+</div>]]></description><link>https://jrhea.github.io/2015/12/12/Ethereum-Notes.html</link><guid isPermaLink="true">https://jrhea.github.io/2015/12/12/Ethereum-Notes.html</guid><dc:creator><![CDATA[Jonny Rhea]]></dc:creator><pubDate>Sat, 12 Dec 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[MythTV Notes]]></title><description><![CDATA[<div class="paragraph">
+<p><strong>To begin, mount a usb drive</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> &gt; lsblk
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda      8:0    0 119.2G  0 disk
+├─sda1   8:1    0 115.2G  0 part /
+├─sda2   8:2    0     1K  0 part
+└─sda5   8:5    0     4G  0 part [SWAP]
+sdb      8:16   0   2.7T  0 disk
+└─sdb1   8:17   0     2T  0 part /mnt/mythtv-data-backup
+sdc      8:32   0   2.7T  0 disk
+└─sdc1   8:33   0     2T  0 part /mnt/mythtv-data1
+sdd      8:48   0 931.5G  0 disk
+└─sdd1   8:49   0 931.5G  0 part /mnt/tmp
+sde      8:64   0   1.8T  0 disk
+└─sde1   8:65   0   1.8T  0 part</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Verify that the device matches the usb drive you want to copy to</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> &gt; sudo fdisk -l /dev/sde
+Disk /dev/sde: 2000.4 GB, 2000398934016 bytes
+255 heads, 63 sectors/track, 243201 cylinders, total 3907029168 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0xb7152577
+Device    Boot     Start   End         Blocks        Id System
+/dev/sde1          206848  3907024064  1953408608+   7  HPFS/NTFS/exFAT</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Mount the usb drive</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&gt; sudo mount -t ntfs /dev/sde1 /mnt/tmp</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Download the Mythlink script so you can export videos out of MythTV and rename the files</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Grab <a href="https://www.mythtv.org/wiki/Mythlink.pl">Mythlink.pl</a> script from MythTV wiki.</p>
+</li>
+<li>
+<p>This will create a directory of symbolic links (regroup/title.mpg) to the actual file.mpg</p>
+<div class="literalblock">
+<div class="content">
+<pre>&gt; perl Mythlink.pl --format %U/%T --destination ~/videos</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Copy the files to your usb drive</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>copy the files to the location and dereference symlinks</p>
+<div class="literalblock">
+<div class="content">
+<pre>&gt; cp -rvL ~/videos /mnt/tmp/</pre>
+</div>
+</div>
+</li>
+<li>
+<p>copy only files that haven&#8217;t been copied yet and dereference symlinks</p>
+<div class="literalblock">
+<div class="content">
+<pre>&gt; cp -ruvL ~/videos /mnt/tmp/</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>]]></description><link>https://jrhea.github.io/2015/06/01/MythTV-Notes.html</link><guid isPermaLink="true">https://jrhea.github.io/2015/06/01/MythTV-Notes.html</guid><dc:creator><![CDATA[Jonny Rhea]]></dc:creator><pubDate>Mon, 01 Jun 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[OSX Notes]]></title><description><![CDATA[<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_create_a_bootable_debian_usb_drive">1. Create a bootable debian usb drive</a></li>
+<li><a href="#_ssh">2. SSH</a></li>
+<li><a href="#_terminal_app">3. Terminal App</a>
+<ul class="sectlevel2">
+<li><a href="#_ssh_session_page_up_down_and_home_end">3.1. SSH Session: Page Up/Down and Home/End</a></li>
+</ul>
+</li>
+<li><a href="#_x11_forwarding">4. X11 Forwarding</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_create_a_bootable_debian_usb_drive">1. Create a bootable debian usb drive</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>download a debian iso and then convert iso to dmg:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>hdiutil convert -format UDRW -o debian.img debian-7.2.0-amd64-netinst.iso</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>list devices and find usb drive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>diskutil list</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>parition usb drive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>diskutil partitionDisk /dev/disk4 1 "Free Space" "unused" "100%"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>copy dmg to usb drive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo dd if=debian.img.dmg of=/dev/disk4 bs=1m</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>eject disk:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>diskutil eject /dev/disk4</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ssh">2. SSH</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>stop ssh server:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo launchctl stop com.openssh.sshd</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>start ssh server:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo launchctl start com.openssh.sshd</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_terminal_app">3. Terminal App</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ssh_session_page_up_down_and_home_end">3.1. SSH Session: Page Up/Down and Home/End</h3>
+<div class="paragraph">
+<p>Menu Bar &#8594; Terminal &#8594; Preferences &#8594; Profile Tab<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Select your current Settings theme<br></p>
+</li>
+<li>
+<p>Click the Keyboard tab:<br></p>
+<div class="literalblock">
+<div class="content">
+<pre>  Edit (or Add) the entry for Home:
+    Action: Send Text
+    String: \001 (or press Ctrl+a)
+  Edit (or Add) the entry for End:
+    Action: Send Text
+    String: \005 (or press Ctrl+e)
+  Edit (or Add) the entry for Page Up:
+    Action: Send Text
+    String: \033[5~
+  Edit (or Add) the entry for Page Down:
+    Action: Send Text
+    String: \033[6~</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Close the settings window.<br></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_x11_forwarding">4. X11 Forwarding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We need an X.Org X Windowing System for OSX:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>wget -c https://xquartz-dl.macosforge.org/SL/XQuartz-2.7.8.dmg</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>/etc/sshd_config</p>
+</div>
+<div class="paragraph">
+<p>change:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#X11Forwarding no</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>X11Forwarding yes</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create ~/.ssh/config:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>host *
+ForwardX11 yes
+ForwardX11Trusted yes
+XauthLocation /opt/X11/bin/xauth</pre>
+</div>
+</div>
+</div>
+</div>]]></description><link>https://jrhea.github.io/2013/12/06/OSX-Notes.html</link><guid isPermaLink="true">https://jrhea.github.io/2013/12/06/OSX-Notes.html</guid><dc:creator><![CDATA[Jonny Rhea]]></dc:creator><pubDate>Fri, 06 Dec 2013 00:00:00 GMT</pubDate></item><item><title><![CDATA[Linux Notes]]></title><description><![CDATA[<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_general_commands">1. general commands</a>
+<ul class="sectlevel2">
+<li><a href="#_find">1.1. find</a></li>
+<li><a href="#_watch">1.2. watch</a></li>
+</ul>
+</li>
+<li><a href="#_tmux">2. tmux</a></li>
+<li><a href="#_linux_system_info">3. linux system info</a></li>
+<li><a href="#_linux_ipc">4. linux ipc</a>
+<ul class="sectlevel2">
+<li><a href="#_ipcs">4.1. ipcs</a></li>
+<li><a href="#_ipcrm">4.2. ipcrm</a></li>
+</ul>
+</li>
+<li><a href="#_linux_system_configuration">5. linux system configuration</a></li>
+<li><a href="#_linux_binutils">6. linux binutils</a>
+<ul class="sectlevel2">
+<li><a href="#_objdump">6.1. objdump</a></li>
+<li><a href="#_nm">6.2. nm</a></li>
+</ul>
+</li>
+<li><a href="#_other_utils">7. other utils</a>
+<ul class="sectlevel2">
+<li><a href="#_file">7.1. file</a></li>
+</ul>
+</li>
+<li><a href="#_misc_procedures">8. misc procedures</a>
+<ul class="sectlevel2">
+<li><a href="#_clone_drive">8.1. Clone drive</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_general_commands">1. general commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is just a few general commands that are useful to know.</p>
+</div>
+<div class="sect2">
+<h3 id="_find">1.1. find</h3>
+<div class="paragraph">
+<p>Search the current dir (and below) for a file named sue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ find . –name sue</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Search /tmp and /var for files named foo*bar modified in the last week:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ find /tmp /var –mtime -7 -name foo\*bar</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Search the file system for files modified &lt; 10 mins ago, excluding dirs and other special files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ find / -mmin -10 –type f</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_watch">1.2. watch</h3>
+<div class="paragraph">
+<p>Use the watch command to monitor a process every .1 secs</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>watch -e -n .1 'if ps cax | grep -w 'foo'; then exit 0; else exit 1; fi'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tmux">2. tmux</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>List current sessions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ tmux ls</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Attach to a session (N is the session number):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ tmux attach -t N</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Shortcuts:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>switch between different views: <strong>Ctrl+b space</strong><br>
+scroll up/down: <strong>Ctrl+b [</strong><br>
+split screen vertically: <strong>Ctrl+b %</strong><br></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linux_system_info">3. linux system info</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>report file system disk space usage (human readable):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ df -h</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>find the UUID of a device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ls -al /dev/disk/by-uuid/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>processor info:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ more /proc/cpuinfo</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>memory info:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ more /proc/meminfo</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>check to see if Linux is 32 or 64bit:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ getconf LONG_BIT</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>distribution info:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ lsb_release -a</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>list all packages installed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ dpkg -l</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>find the 25 largest dirs starting at the current dir:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ du –xk |sort –n |tail -25</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>show what processes are using which ports:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ netstat -tulpn</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linux_ipc">4. linux ipc</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ipcs">4.1. ipcs</h3>
+<div class="paragraph">
+<p><strong>provides information on system inter process communication.</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ipcs
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status
+0x6112703c 32769        me         666        15600      2
+
+------ Semaphore Arrays --------
+key        semid      owner      perms      nsems
+
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>use the following options to filter the information displayed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>m &#8658; shared memory</p>
+</li>
+<li>
+<p>q &#8658; message queues</p>
+</li>
+<li>
+<p>s &#8658; semaphores</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>to find out what process is attached to shared memory use the -p option:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ipcs -mp
+------ Shared Memory Creator/Last-op --------
+shmid      owner      cpid       lpid
+32769      me         3265       3290
+
+$ ps -ef | grep 3290
+ 3290  3289  1 17:28 ?        00:00:12 /usr/local/java/bin/java -jar ~/foo/foo.jar bar
+ 11587 3290  3 17:41 ?        00:00:00 ~/foo/bar</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ipcrm">4.2. ipcrm</h3>
+<div class="paragraph">
+<p><strong>use this command to remove shared memory, message queue, or semaphore.</strong></p>
+</div>
+<div class="paragraph">
+<p>remove shared memory by id
+---
+$ ipcs -m &lt;shmid&gt;
+---</p>
+</div>
+<div class="paragraph">
+<p>remove shared memory by key
+---
+$ ipcs -M &lt;key&gt;
+---</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linux_system_configuration">5. linux system configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>check and repair filesystem:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ fsck /dev/sda1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>change the frequency of filesys checks on startup:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ tune2fs –c &lt;some number&gt; /dev/sda1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to change the login manager edit:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>/etc/X11/default-display-manager</strong></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>if your mac address changes edit or delete:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>/etc/udev/rules.d/70-persistent-net.rules</strong></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>disable filesys checks by changing the last number in line to 0:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>/etc/fstab</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;     &lt;dump&gt; &lt;pass&gt;
+# performs filesys check every 30 startups
+/dev/sda1        /mnt/foo        ext4   defaults 0 30
+# filesys checks disabled
+/dev/sdb1        /mnt/bar        ext4   defaults 0 0</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To grant passwordless rsh:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>hosts.equiv</strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;computer name&gt; &lt;user name&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Create ssh key (rsa):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ cd ~/.ssh
+$ ssh-keygen –t rsa
+$ ssh-add &lt;file&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linux_binutils">6. linux binutils</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_objdump">6.1. objdump</h3>
+<div class="paragraph">
+<p><strong>display info from an object file(s).</strong></p>
+</div>
+<div class="paragraph">
+<p>basic syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ objdump &lt;options&gt; file</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>display the contents of the overall file header:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ objdump –f foo
+
+foo:     file format elf32-i386
+architecture: i386, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x0804be34</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>display object format specific file header contents:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ objdump -p foo
+
+foo:     file format elf32-i386
+
+Program Header:
+    PHDR off    0x00000034 vaddr 0x08048034 paddr 0x08048034 align 2**2
+         filesz 0x00000120 memsz 0x00000120 flags r-x
+  INTERP off    0x00000154 vaddr 0x08048154 paddr 0x08048154 align 2**0
+         filesz 0x00000013 memsz 0x00000013 flags r--
+(...)
+Dynamic Section:
+  NEEDED               libc.so.6
+  INIT                 0x080494a0
+  FINI                 0x0805a02c
+  GNU_HASH             0x080481ac
+  STRTAB               0x080489b8
+(...)
+Version References:
+  required from libc.so.6:
+    0x09691f73 0x00 10 GLIBC_2.1.3
+    0x0d696912 0x00 09 GLIBC_2.2
+    0x09691a73 0x00 07 GLIBC_2.2.3
+(...)</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nm">6.2. nm</h3>
+<div class="paragraph">
+<p><strong>provides info on the symbols used in an object file or executable. by default, nm shows the symbol: value, type and name.</strong></p>
+</div>
+<div class="paragraph">
+<p>basic syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ nm</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>if no file is provided, nm will inspect a.out</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>display default information on executable (or object file):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ nm foo</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>display all the symbols in an executable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ nm -n foo</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>display information about the size of a particular symbol, bar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ nm -n foo -S | grep bar</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>only display information on external symbols:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ nm -g foo</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_utils">7. other utils</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_file">7.1. file</h3>
+<div class="paragraph">
+<p><strong>get basic file information on a file(s).</strong></p>
+</div>
+<div class="paragraph">
+<p>basic syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ file file</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ file foo
+
+foo: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, stripped</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_misc_procedures">8. misc procedures</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_clone_drive">8.1. Clone drive</h3>
+<div class="paragraph">
+<p>copy mkbkup.sh from my github repo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>wget -c https://github.com/jrhea/.jr_env/raw/master/utils/sys/mkbkup.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>find the device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo fdisk -l
+df -T</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>create partition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo fdisk /dev/sdb     # choose 'n' to create new partition</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>create filesystem:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo mkfs.ext4 /dev/sdb1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>create mount point:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo mkdir /mnt/usb</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mount it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo mount -t ext4 /dev/sdb1 /mnt/usb/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>run the copy script:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sh mkbkup.sh   #make sure TODIR=/mnt/usb</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>change the uuid to that of the original disk:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>tune2fs /dev/sdb1 -U {uuid of original disk}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>install grub:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>grub-install --root-directory=/mnt /dev/sdb</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>plug device in the target machine and boot.  Once it boots:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo update-grub</pre>
+</div>
+</div>
+</div>
+</div>
+</div>]]></description><link>https://jrhea.github.io/2013/05/12/Linux-Notes.html</link><guid isPermaLink="true">https://jrhea.github.io/2013/05/12/Linux-Notes.html</guid><dc:creator><![CDATA[Jonny Rhea]]></dc:creator><pubDate>Sun, 12 May 2013 00:00:00 GMT</pubDate></item></channel></rss>
