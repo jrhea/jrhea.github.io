@@ -361,47 +361,45 @@ sudo update-grub
 
 In other words, the drive is 1 TB or more.  
 
-1. Check the kernel was compiled with EFI support. 
+Check the kernel was compiled with EFI support. 
 
 	$ cat /boot/config-2.6.26-2-686 | grep EFI
 
 Kernel has EFI support if the output looks like:
 
-CONFIG_EFI=y
-CONFIG_FB_EFI=y
-CONFIG_EFI_VARS=m
-CONFIG_EFI_PARTITION=y
+	CONFIG_EFI=y
+	CONFIG_FB_EFI=y
+	CONFIG_EFI_VARS=m
+	CONFIG_EFI_PARTITION=y
 
 2. The fdisk command shows only a placeholder partition. This is normal.
 
 	$ fdisk -l /dev/sdd
 
-WARNING: GPT (GUID Partition Table) detected on '/dev/sdd'! The util fdisk doesn't support GPT. Use GNU Parted.
-
-Disk /dev/sdd: 4000.8 GB, 4000787029504 bytes
-256 heads, 63 sectors/track, 484501 cylinders, total 7814037167 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk identifier: 0x9bcb5367
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdd1               1  4294967295  2147483647+  ee  GPT
-Partition 1 does not start on physical sector boundary.
+	WARNING: GPT (GUID Partition Table) detected on '/dev/sdd'! The util
+	fdisk doesn't support GPT. Use GNU Parted.
+	Disk /dev/sdd: 4000.8 GB, 4000787029504 bytes
+	256 heads, 63 sectors/track, 484501 cylinders, total 7814037167 sectors
+	Units = sectors of 1 * 512 = 512 bytes
+	Sector size (logical/physical): 512 bytes / 4096 bytes
+	I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+	Disk identifier: 0x9bcb5367
+	Device Boot      Start         End      Blocks   Id  System
+	/dev/sdd1               1  4294967295  2147483647+  ee  GPT
+	Partition 1 does not start on physical sector boundary.
 
 
 3. List the real partitions on the disk using parted.
 
 	$ parted /dev/sdd print
 
-Model: Seagate BUP BL (scsi)
-Disk /dev/sdd: 4001GB
-Sector size (logical/physical): 512B/4096B
-Partition Table: gpt
-
-Number  Start   End     Size    File system  Name                  Flags
- 1      17.4kB  134MB   134MB                                      msftres
- 2      135MB   4001GB  4001GB  ntfs         Basic data partition
+	Model: Seagate BUP BL (scsi)
+	Disk /dev/sdd: 4001GB
+	Sector size (logical/physical): 512B/4096B
+	Partition Table: gpt
+	Number  Start   End     Size    File system  Name                  Flags
+ 	1      17.4kB  134MB   134MB                                      msftres
+ 	2      135MB   4001GB  4001GB  ntfs         Basic data partition
 
 Mount the second partition:
 
