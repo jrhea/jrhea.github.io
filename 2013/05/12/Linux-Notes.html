@@ -25,7 +25,7 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="//jrhea.github.io/themes/uno/assets/css/uno.css?v=1491100441781" />
+    <link rel="stylesheet" type="text/css" href="//jrhea.github.io/themes/uno/assets/css/uno.css?v=1493492954290" />
 
     <link rel="canonical" href="https://jrhea.github.io/2013/05/12/Linux-Notes.html" />
     <meta name="referrer" content="origin" />
@@ -191,6 +191,7 @@
 <li><a href="#_misc_procedures">8. misc procedures</a>
 <ul class="sectlevel2">
 <li><a href="#_clone_drive">8.1. Clone drive</a></li>
+<li><a href="#_mount_a_large_disk_with_an_efi_gpt_partition">8.2. Mount a large disk with an EFI GPT partition</a></li>
 </ul>
 </li>
 </ul>
@@ -760,6 +761,103 @@ df -T</pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_mount_a_large_disk_with_an_efi_gpt_partition">8.2. Mount a large disk with an EFI GPT partition</h3>
+<div class="paragraph">
+<p>In other words, the drive is 1 TB or more.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check the kernel was compiled with EFI support.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ cat /boot/config-2.6.26-2-686 | grep EFI</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Kernel has EFI support if the output looks like:</p>
+</div>
+<div class="paragraph">
+<p>CONFIG_EFI=y
+CONFIG_FB_EFI=y
+CONFIG_EFI_VARS=m
+CONFIG_EFI_PARTITION=y</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The fdisk command shows only a placeholder partition. This is normal.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ fdisk -l /dev/sdd</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+GPT (GUID Partition Table) detected on '/dev/sdd'! The util fdisk doesn&#8217;t support GPT. Use GNU Parted.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Disk /dev/sdd: 4000.8 GB, 4000787029504 bytes
+256 heads, 63 sectors/track, 484501 cylinders, total 7814037167 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disk identifier: 0x9bcb5367</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1               1  4294967295  2147483647+  ee  GPT
+Partition 1 does not start on physical sector boundary.</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>List the real partitions on the disk using parted.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ parted /dev/sdd print</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Model: Seagate BUP BL (scsi)
+Disk /dev/sdd: 4001GB
+Sector size (logical/physical): 512B/4096B
+Partition Table: gpt</p>
+</div>
+<div class="paragraph">
+<p>Number  Start   End     Size    File system  Name                  Flags
+ 1      17.4kB  134MB   134MB                                      msftres
+ 2      135MB   4001GB  4001GB  ntfs         Basic data partition</p>
+</div>
+<div class="paragraph">
+<p>Mount the second partition:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ mount -t ntfs /dev/sdd2 /mnt/tmp</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
     </section>
@@ -792,7 +890,7 @@ df -T</pre>
        
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-    <script type="text/javascript" src="//jrhea.github.io/themes/uno/assets/js/main.js?v=1491100441781"></script>
+    <script type="text/javascript" src="//jrhea.github.io/themes/uno/assets/js/main.js?v=1493492954290"></script>
     
 
 </body>
