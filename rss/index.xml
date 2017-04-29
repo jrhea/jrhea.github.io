@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[jonny rhea]]></title><description><![CDATA[Right. Well, I mean when it came to stuff like that... I could always just play.]]></description><link>https://jrhea.github.io</link><image><url>https://jrhea.github.io/images/whoru.png</url><title>jonny rhea</title><link>https://jrhea.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sat, 29 Apr 2017 19:09:14 GMT</lastBuildDate><atom:link href="https://jrhea.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Ethereum Notes]]></title><description><![CDATA[<div id="toc" class="toc">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[jonny rhea]]></title><description><![CDATA[Right. Well, I mean when it came to stuff like that... I could always just play.]]></description><link>https://jrhea.github.io</link><image><url>https://jrhea.github.io/images/whoru.png</url><title>jonny rhea</title><link>https://jrhea.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sat, 29 Apr 2017 19:13:00 GMT</lastBuildDate><atom:link href="https://jrhea.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Ethereum Notes]]></title><description><![CDATA[<div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_mining_rig_setup">1. Mining Rig Setup</a>
@@ -1444,26 +1444,24 @@ df -T</pre>
 <div class="paragraph">
 <p>In other words, the drive is 1 TB or more.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
+<div class="paragraph">
 <p>Check the kernel was compiled with EFI support.</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>$ cat /boot/config-2.6.26-2-686 | grep EFI</pre>
 </div>
 </div>
-</li>
-</ol>
-</div>
 <div class="paragraph">
 <p>Kernel has EFI support if the output looks like:</p>
 </div>
-<div class="paragraph">
-<p>CONFIG_EFI=y
+<div class="literalblock">
+<div class="content">
+<pre>CONFIG_EFI=y
 CONFIG_FB_EFI=y
 CONFIG_EFI_VARS=m
-CONFIG_EFI_PARTITION=y</p>
+CONFIG_EFI_PARTITION=y</pre>
+</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1474,38 +1472,22 @@ CONFIG_EFI_PARTITION=y</p>
 <pre>$ fdisk -l /dev/sdd</pre>
 </div>
 </div>
-</li>
-</ol>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-GPT (GUID Partition Table) detected on '/dev/sdd'! The util fdisk doesn&#8217;t support GPT. Use GNU Parted.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Disk /dev/sdd: 4000.8 GB, 4000787029504 bytes
+<div class="literalblock">
+<div class="content">
+<pre>WARNING: GPT (GUID Partition Table) detected on '/dev/sdd'! The util
+fdisk doesn't support GPT. Use GNU Parted.
+Disk /dev/sdd: 4000.8 GB, 4000787029504 bytes
 256 heads, 63 sectors/track, 484501 cylinders, total 7814037167 sectors
 Units = sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 4096 bytes
 I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk identifier: 0x9bcb5367</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>   Device Boot      Start         End      Blocks   Id  System
+Disk identifier: 0x9bcb5367
+Device Boot      Start         End      Blocks   Id  System
 /dev/sdd1               1  4294967295  2147483647+  ee  GPT
 Partition 1 does not start on physical sector boundary.</pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>List the real partitions on the disk using parted.</p>
 <div class="literalblock">
@@ -1513,19 +1495,19 @@ Partition 1 does not start on physical sector boundary.</pre>
 <pre>$ parted /dev/sdd print</pre>
 </div>
 </div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Model: Seagate BUP BL (scsi)
+<div class="literalblock">
+<div class="content">
+<pre>Model: Seagate BUP BL (scsi)
 Disk /dev/sdd: 4001GB
 Sector size (logical/physical): 512B/4096B
-Partition Table: gpt</p>
+Partition Table: gpt
+Number  Start   End     Size    File system  Name                  Flags
+	1      17.4kB  134MB   134MB                                      msftres
+	2      135MB   4001GB  4001GB  ntfs         Basic data partition</pre>
 </div>
-<div class="paragraph">
-<p>Number  Start   End     Size    File system  Name                  Flags
- 1      17.4kB  134MB   134MB                                      msftres
- 2      135MB   4001GB  4001GB  ntfs         Basic data partition</p>
+</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Mount the second partition:</p>
